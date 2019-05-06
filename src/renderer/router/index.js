@@ -5,8 +5,14 @@ Vue.use(Router)
 
 export default new Router({
     routes: [{
-        path: '/',
-        name: 'start',
-        component: require('@/pages/start.vue').default
-    }]
+            path: '/',
+            name: 'start',
+            component: require('@/pages/start.vue').default
+        },
+        {
+            path: '/loadimg',
+            name: 'loadimg',
+            component: require('@/pages/loadimg.vue').default
+        },
+    ]
 })
