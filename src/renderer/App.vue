@@ -13,7 +13,7 @@
 <style>
   /* CSS */
   body{
-    background: url('./assets/start.jpg');
+    background: url('./assets/bg.svg');
     background-size:cover;
     background-repeat: no-repeat;
     
