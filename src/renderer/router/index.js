@@ -14,5 +14,10 @@ export default new Router({
             name: 'loadimg',
             component: require('@/pages/loadimg.vue').default
         },
+        {
+            path: '/timemeter',
+            name: 'timemeter',
+            component: require('@/pages/timemeter.vue').default
+        },
     ]
 })

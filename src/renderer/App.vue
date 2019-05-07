@@ -16,6 +16,6 @@
     background: url('./assets/bg.svg');
     background-size:cover;
     background-repeat: no-repeat;
-    font-family: Microsoft YaHei;
+    font-family:Source Han Sans,Microsoft YaHei;
   }
 </style>
