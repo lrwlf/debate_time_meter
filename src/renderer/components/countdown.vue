@@ -1,56 +1,81 @@
 <template>
-    <div>
-        计时器
-        {{minute}}:{{ten}}{{one}}
-        <button @click="dopause">pause</button>
-        <img class="num" :src="topath(minute)">
-        <img class="num" src="static/split.png">
-        <img class="num" :src="topath(ten)">
-        <img class="num" :src="topath(one)">
+  <div>
+    <div class="num">
+      <img :src="topath(minute)">
     </div>
+    <div class="num" id = 'split'>
+      <img src="static/split.png">
+    </div>
+    <div class="num">
+      <img :src="topath(ten)">
+    </div>
+    <div class="num">
+      <img :src="topath(one)">
+    </div>
+  </div>
 </template>
 <script>
 export default {
-    data(){
-        return{
-            currenttime:600,
-            pause:false,
-        }
+  data() {
+    return {
+
+    };
+  },
+  computed: {
+    minute: function() {
+      return parseInt(this.currenttime / 60);
     },
-    computed:{
-        minute:function(){
-            return parseInt(this.currenttime/60);
-        },
-        ten:function(){
-            return parseInt(parseInt(this.currenttime%60)/10)
-        },
-        one:function(){
-            return parseInt(parseInt(this.currenttime%60)%10)
-        }
+    ten: function() {
+      return parseInt(parseInt(this.currenttime % 60) / 10);
     },
-    methods:{
-        timedown(){
-                if(this.pause||this.currenttime<=0)
-                    return
-                this.currenttime--;
-                setTimeout(this.timedown, 1000);
-        },
-        dopause(){
-            this.pause = !this.pause;
-            if(!this.pause)
-                this.timedown()
-        },
-        topath(num){
-            return 'static/'+num+'.png'
-        }
-    },
-    created(){
-        this.timedown();
+    one: function() {
+      return parseInt(parseInt(this.currenttime % 60) % 10);
     }
-}
+  },
+  methods: {
+    timedown() {
+      if (this.pause || this.currenttime <= 0) return;
+      this.$emit('down',this.currenttime-1)
+      setTimeout(this.timedown, 1000);
+    },
+    topath(num) {
+      return "static/" + num + ".png";
+    }
+  },
+  model:{
+      prop:'currenttime',
+      event:'down',
+  },
+  props:{
+      pause:Boolean,
+      currenttime:Number,
+  },
+  watch:{
+      pause:function(){
+            if (!this.pause) this.timedown();
+      }
+  },
+  created() {
+
+  }
+};
 </script>
 <style scoped>
-    .num{
-       padding: 20px
-    }
+.num {
+  display: inline-block;
+  width: 280px;
+  height: 280px;
+  text-align: center;
+}
+.num img{
+    height: 100%;
+}
+#split{
+    width: 100px;
+}
+#split img{
+    height: 80%;
+    margin-bottom: 20px;
+
+}
 </style>
