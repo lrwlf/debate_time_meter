@@ -23,8 +23,8 @@ export default {
     },
     created(){
         for(let i=0;i<4;++i){
-            this.zhengimg.push('/static/defaultimg.jpg') //加载默认图片
-            this.fanimg.push('/static/defaultimg.jpg')
+            this.zhengimg.push('static/defaultimg.jpg') //加载默认图片
+            this.fanimg.push('static/defaultimg.jpg')
         }    
     }
 }

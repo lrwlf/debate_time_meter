@@ -4,7 +4,7 @@
         {{minute}}:{{ten}}{{one}}
         <button @click="dopause">pause</button>
         <img class="num" :src="topath(minute)">
-        <img class="num" src="/static/split.png">
+        <img class="num" src="static/split.png">
         <img class="num" :src="topath(ten)">
         <img class="num" :src="topath(one)">
     </div>
@@ -41,7 +41,7 @@ export default {
                 this.timedown()
         },
         topath(num){
-            return '/static/'+num+'.png'
+            return 'static/'+num+'.png'
         }
     },
     created(){
