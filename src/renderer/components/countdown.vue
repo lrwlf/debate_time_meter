@@ -18,7 +18,7 @@
 export default {
   data() {
     return {
-
+        timmer:'',
     };
   },
   computed: {
@@ -36,7 +36,7 @@ export default {
     timedown() {
       if (this.pause || this.currenttime <= 0) return;
       this.$emit('down',this.currenttime-1)
-      setTimeout(this.timedown, 1000);
+      this.timmer=setTimeout(this.timedown, 1000);
     },
     topath(num) {
       return "static/" + num + ".png";
@@ -53,6 +53,7 @@ export default {
   watch:{
       pause:function(){
             if (!this.pause) this.timedown();
+            else clearTimeout(this.timmer);
       }
   },
   created() {
