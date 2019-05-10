@@ -82,8 +82,18 @@
             time:240,
             person:[0,0],
           },
-          
-          
+          {
+            name:'反方结辩',
+            countmode:1,
+            time:210,
+            person:-4,
+          },
+          {
+            name:'正方结辩',
+            countmode:1,
+            time:210,
+            person:4,
+          },          
         ]
       }
     }

@@ -13,6 +13,8 @@ export default {
             ipc : '',
             currenttime:65,
             ispause:true,
+            fomat:'',
+            currentformat:'',
         }
     },
     components:{
@@ -37,6 +39,7 @@ export default {
                 this.$refs.pskey.click();
             }
         };
+        this.fomat = this.$root.fomat;
     }
 }
 </script>
