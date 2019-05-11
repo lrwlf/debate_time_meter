@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, dialog, MenuItem, Menu} from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -13,6 +13,9 @@ const winURL = process.env.NODE_ENV === 'development' ?
     `http://localhost:9080` :
     `file://${__dirname}/index.html`
 
+//const electron = require('electron');
+//const Menu = electron.Menu
+//const app = electron.app
 function createWindow() {
     /**
      * Initial window options
@@ -20,7 +23,10 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         height: 563,
         useContentSize: true,
-        width: 1000
+        width: 1000,
+        webPreferences:{
+            webSecurity:false
+        }
     })
 
     mainWindow.loadURL(winURL)
@@ -60,4 +66,16 @@ ipc.on('window-max', function() {
 })
 ipc.on('window-close', function() {
     mainWindow.close();
+})
+ipc.on('open-directory-dialog',function(event,index){
+    dialog.showOpenDialog({
+        properties:['openFile']
+    },function(files){
+        if(files)
+            event.sender.send('selectedItem',[files,index]);
+    });
+})
+ipc.on('sigShowRightClickMenu',(event)=>{
+    const menu = new Menu();
+    menu.append(new MenuItem({label:'Hello world'}));
 })
