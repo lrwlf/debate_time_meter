@@ -1,7 +1,9 @@
 <template>
     <div>
+        <h3>{{fomat[currentformat].name}}</h3>
         <countdown :pause='ispause' v-model='currenttime' @down='out'></countdown>
         <button @click="pause_start" ref='pskey' >开始/暂停</button>
+        <button @click="tonext">nextformat</button>
         <input type="text"  v-model="currenttime">
     </div>
 </template>
@@ -13,6 +15,8 @@ export default {
             ipc : '',
             currenttime:65,
             ispause:true,
+            fomat:'',
+            currentformat:0,
         }
     },
     components:{
@@ -24,8 +28,13 @@ export default {
         },
         out(){
             console.log(this.currenttime);
-        }
-    },
+        },
+        tonext(){
+            this.currentformat++;
+            this.currenttime=this.fomat[this.currentformat].time;
+            this.ispause = true;
+        }   
+        },
     created(){
         this.ipc = require('electron').ipcRenderer;
         this.ipc.send('window-max');
@@ -37,6 +46,8 @@ export default {
                 this.$refs.pskey.click();
             }
         };
+        this.fomat = this.$root.fomat;
+        this.currenttime=this.fomat[this.currentformat].time; //初始化计时到第一阶段
     }
 }
 </script>

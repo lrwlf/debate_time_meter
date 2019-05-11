@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'debate_time_meter'
+    name: 'debate_time_meter',
   }
 </script>
 
