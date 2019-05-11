@@ -1,7 +1,7 @@
 <template>
-    <div @click="showRightMenu">
+    <div>
         <img v-for="(item,index) in zhengimg" @click="loadzheng(index)" :key="item.id" :src="zhengimg[index]" >    
-        <img v-for="(item,index) in fanimg" @click="loadfan(index)" :key="item.id" :src="item" >
+        <img v-for="(item,index) in fanimg" @click="loadfan(index+4)" :key="item.id" :src="fanimg[index]" >
         
     </div>
 </template>
@@ -20,8 +20,8 @@ export default {
             this.ipc.send('open-directory-dialog',index);
         },
         loadfan(index){
-            this.ipc.send('open-directory-dialog',-index)
-            this.fanimg[index] = '' //在这里加载图片
+            this.ipc.send('open-directory-dialog',index)
+            //this.fanimg[index] = '' //在这里加载图片
         },
         showRightMenu(){
             this.ipc.send('open-directory-dialog',1024);
@@ -37,12 +37,13 @@ export default {
             this.fanimg[i] = 'static/defaultimg.jpg'
         }
         this.ipc.on('selectedItem',(event,path)=>{
-            if(path[1]>0)
+            if(path[1]>=0 && path[1] < 4)
             this.$set(this.zhengimg,path[1],path[0][0].replace(/\\/g,"/"))
-            else if(path[1] != 1024)
-            this.$set(this.fanimg,path[1],path[0][0].replace(/\\/g,"/"))
-            else 
-            document.querySelector('body').setAttribute('style','background:url('+path[0][0]+')')
+            else
+            this.$set(this.fanimg,path[1]-4,path[0][0].replace(/\\/g,"/"))
+            console.log(path[1]-4)
+           /* else 
+            document.querySelector('body').setAttribute('style', 'background-color:#fff')*/
         })    
     },
     
@@ -53,6 +54,7 @@ export default {
 <style scoped>
  img{
      width: 120px;
+     height: 120px;
      border-radius:60px
     }
 
