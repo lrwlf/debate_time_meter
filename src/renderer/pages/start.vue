@@ -31,7 +31,9 @@ export default {
             this.$router.push('loadimg');
         },
         startdebate(){
-            this.$router.push('timemeter')
+            //this.$router.push('timemeter')
+            this.ipc = require("electron").ipcRenderer;
+            this.ipc.send("window-max");
         },
         showRightMenu(e){
             if(this.menuShow == false)

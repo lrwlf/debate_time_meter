@@ -14,10 +14,11 @@
 </template>
 <script>
 import countdown from "../components/countdown.vue";
+import { isIPv4 } from 'net';
 export default {
   data() {
     return {
-      ipc: "",
+      ipc:require('electron').ipcRenderer,
       currenttime: 65,
       ispause: true,
       fomat: "",
@@ -74,8 +75,7 @@ export default {
     }
   },
   created() {
-    this.ipc = require("electron").ipcRenderer;
-    this.ipc.send("window-max");
+    
     //快捷键
     document.onkeydown = e => {
       let key = window.event.keyCode;
@@ -90,6 +90,7 @@ export default {
       if (key == 50) this.changespeaker(2);
       if (key == 51) this.changespeaker(3);
       if (key == 52) this.changespeaker(4);
+      if (key == 27) this.ipc.send("newWindow-closed");
     };
     this.fomat = this.$root.fomat;
     this.currenttime = this.fomat[this.currentformat].time; //初始化计时到第一阶段

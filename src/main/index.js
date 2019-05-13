@@ -13,7 +13,9 @@ let newWindow
 const winURL = process.env.NODE_ENV === 'development' ?
     `http://localhost:9080` :
     `file://${__dirname}/index.html`
-
+const newURL = process.env.NODE_ENV === 'development' ?
+    `http://localhost:9080/#/timemeter` :
+    `file://${__dirname}/index.html/#/timemeter`
 //const electron = require('electron');
 //const Menu = electron.Menu
 //const app = electron.app
@@ -68,11 +70,11 @@ ipc.on('window-max', function() {
             useContentSize: true,
             width: 1000,
             frame:false,
-            parent:mainWindow,
             webPreferences:{
                 webSecurity:false,
             },
         })
+        newWindow.loadURL(newURL);
         newWindow.maximize();
     }
 })
@@ -90,4 +92,7 @@ ipc.on('open-directory-dialog',function(event,index){
 ipc.on('sigShowRightClickMenu',(event)=>{
     const menu = new Menu();
     menu.append(new MenuItem({label:'Hello world'}));
+})
+ipc.on('newWindow-closed',function(){
+    newWindow.close();
 })
