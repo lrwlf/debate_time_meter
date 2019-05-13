@@ -15,10 +15,15 @@
 
 <style>
   /* CSS */
+  @font-face
+  {
+    font-family: bdzy;
+    src: url('../../static/bdzy.ttf');
+  }
   body{
     background: url('./assets/bg.svg');
     background-size:cover;
     background-repeat: no-repeat;
-    font-family:Source Han Sans,Microsoft YaHei;
+    font-family:bdzy;
   }
 </style>

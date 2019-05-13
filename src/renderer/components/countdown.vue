@@ -64,8 +64,8 @@ export default {
 <style scoped>
 .num {
   display: inline-block;
-  width: 280px;
-  height: 280px;
+  width: 250px;
+  height: 250px;
   text-align: center;
 }
 .num img{

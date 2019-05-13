@@ -13,6 +13,7 @@
         <ul class="contextmenu" v-bind:style="{left: getMenuLeft+'px',top: getMenuTop+'px'}" v-show="menuShow">
             <li v-on:click="change_picture">修改配置</li>
         </ul>
+        <input v-model='pos' type="text">
     </div>
 </template>
 <script>
@@ -24,6 +25,7 @@ export default {
             menuShow:false,
             menuLeft:0,
             menuTop:0,
+            pos:'',
         }
     },
     methods:{
@@ -57,6 +59,9 @@ export default {
             return this.menuTop;
         },
     },
+    created(){
+        this.pos=__static;
+    }
 }
 </script>
 <style scoped>

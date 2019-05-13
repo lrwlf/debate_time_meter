@@ -15,7 +15,7 @@ const winURL = process.env.NODE_ENV === 'development' ?
     `file://${__dirname}/index.html`
 const newURL = process.env.NODE_ENV === 'development' ?
     `http://localhost:9080/#/timemeter` :
-    `file://${__dirname}/index.html/#/timemeter`
+    `file://${__dirname}/index.html#/timemeter`
     //const electron = require('electron');
     //const Menu = electron.Menu
     //const app = electron.app
@@ -73,6 +73,7 @@ ipc.on('window-max', function() {
             useContentSize: true,
             width: 1000,
             frame: false,
+            icon: 'static/icon.ico',
             webPreferences: {
                 webSecurity: false,
             },

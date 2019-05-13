@@ -1,19 +1,22 @@
 <template>
   <div>
     <center>
-    <div id="tittle">
-      <h3>&lt;{{fomat[currentformat].name}}></h3>
-    </div>
-    <div class="midcontent">
-      <img class="tx" :src="leftimg">
-      <countdown class="tm" :pause="ispause" v-model="currenttime" @down="out"></countdown>
-      <img class="tx" :src="rightimg">
-    </div>
-    <button @click="pause_start" ref="pskey">开始/暂停</button>
-    <button @click="tonext">nextformat</button>
-    <input type="text" v-model="currenttime">
-    <button @click="reback">返回</button>
-     </center>
+      <img src="../assets/lm.png" id="lm" v-show="isleft">
+      <img src="../assets/rm.png" id="rm" v-show="!isleft">
+
+      <div id="tittle">
+        <h3>&lt;{{fomat[currentformat].name}}></h3>
+      </div>
+      <div class="midcontent">
+        <img class="tx" :src="leftimg">
+        <countdown class="tm" :pause="ispause" v-model="currenttime" @down="out"></countdown>
+        <img class="tx" :src="rightimg">
+      </div>
+      <button @click="pause_start" ref="pskey">开始/暂停</button>
+      <button @click="tonext">nextformat</button>
+      <input type="text" v-model="currenttime">
+      <button @click="reback">返回</button>
+    </center>
   </div>
 </template>
 <script>
@@ -33,7 +36,8 @@ export default {
       rigthimg: "",
       zhengimg: [],
       fanimg: [],
-      cachetime: 0
+      cachetime: 0,
+      isleft:true,
     };
   },
   components: {
@@ -67,8 +71,8 @@ export default {
         this.cachetime = t;
       }
       this.currentspeaker = index;
-      if (index > 0) this.leftimg = this.zhengimg[index - 1];
-      if (index < 0) this.rigthimg = this.fanimg[-index - 1];
+      if (index > 0) {this.leftimg = this.zhengimg[index - 1];this.isleft=true;}
+      if (index < 0) {this.rigthimg = this.fanimg[-index - 1];this.isleft=false;}
     },
     reback() {
       this.$router.push("/");
@@ -90,8 +94,8 @@ export default {
       if (key == 51) this.changespeaker(3);
       if (key == 52) this.changespeaker(4);
       if (key == 27) {
-        if(confirm("确认退出？"))
-          this.ipc.send("newWindow-closed")};
+        if (confirm("确认退出？")) this.ipc.send("newWindow-closed");
+      }
     };
     this.fomat = this.$root.fomat;
     this.currenttime = this.fomat[this.currentformat].time; //初始化计时到第一阶段
@@ -107,19 +111,28 @@ export default {
 <style scoped>
 .tx {
   display: inline-block;
-  width: 300px;
+  width: 250px;
   border-radius: 50%;
 }
 .tm {
   display: inline-block;
+  margin-left: 120px;
+  margin-right: 120px;
 }
-
-#tittle{
-margin-top:300px;
-margin-bottom:50px;
-font-size:30px;
-font-family: 'Source Han Sans CN', 'Microsoft YaHei';
-
-
+#lm{
+  position: absolute;
+  left: 135px;
+  top:330px;
+  }
+#rm{
+  position: absolute;
+  right: 135px;
+  top:330px;
+}
+#tittle {
+  margin-top: 310px;
+  margin-bottom: 60px;
+  font-size: 30px;
+  font-family: bdzy;
 }
 </style>
