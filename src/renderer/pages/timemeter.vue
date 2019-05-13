@@ -9,6 +9,7 @@
         <button @click="pause_start" ref='pskey' >开始/暂停</button>
         <button @click="tonext">nextformat</button>
         <input type="text"  v-model="currenttime">
+        <button @click="reback">返回</button>
     </div>
 </template>
 <script>
@@ -46,7 +47,13 @@ export default {
             this.currentmode=this.fomat[this.currentformat].mode
             this.ispause = true;
 
-        }   
+        },
+        changespeaker(index){
+            console.log(index)
+        },
+        reback(){
+            this.$router.push('/');
+        }
         },
     created(){
         this.ipc = require('electron').ipcRenderer;
@@ -58,6 +65,22 @@ export default {
             if (key == 80) {
                 this.$refs.pskey.click();
             }
+            if(key==112)
+            this.changespeaker(-1)
+            if(key==113)
+            this.changespeaker(-2)
+            if(key==114)
+            this.changespeaker(-3)
+            if(key==115)
+            this.changespeaker(-4)
+            if(key==49)
+            this.changespeaker(1)
+            if(key==50)
+            this.changespeaker(2)
+            if(key==51)
+            this.changespeaker(3)
+            if(key==52)
+            this.changespeaker(4)
         };
         this.fomat = this.$root.fomat;
         this.currenttime=this.fomat[this.currentformat].time; //初始化计时到第一阶段
