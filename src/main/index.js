@@ -9,6 +9,7 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 let mainWindow
+let newWindow
 const winURL = process.env.NODE_ENV === 'development' ?
     `http://localhost:9080` :
     `file://${__dirname}/index.html`
@@ -62,17 +63,17 @@ ipc.on('window-max', function() {
     if (mainWindow.isMaximized()) {
         mainWindow.restore();
     } else {
-        mainWindow = null;
-        mainWindow = new BrowserWindow({
+        newWindow = new BrowserWindow({
             height: 563,
             useContentSize: true,
             width: 1000,
             frame:false,
+            parent:mainWindow,
             webPreferences:{
                 webSecurity:false,
             },
         })
-        mainWindow.maximize();
+        newWindow.maximize();
     }
 })
 ipc.on('window-close', function() {
