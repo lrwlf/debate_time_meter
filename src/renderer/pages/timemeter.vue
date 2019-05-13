@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h3>{{fomat[currentformat].name}}</h3>
+    <center>
+    <div id="tittle">
+      <h3>&lt;{{fomat[currentformat].name}}></h3>
+    </div>
     <div class="midcontent">
       <img class="tx" :src="leftimg">
       <countdown class="tm" :pause="ispause" v-model="currenttime" @down="out"></countdown>
@@ -10,15 +13,16 @@
     <button @click="tonext">nextformat</button>
     <input type="text" v-model="currenttime">
     <button @click="reback">返回</button>
+     </center>
   </div>
 </template>
 <script>
 import countdown from "../components/countdown.vue";
-import { isIPv4 } from 'net';
+import { isIPv4 } from "net";
 export default {
   data() {
     return {
-      ipc:require('electron').ipcRenderer,
+      ipc: require("electron").ipcRenderer,
       currenttime: 65,
       ispause: true,
       fomat: "",
@@ -29,7 +33,7 @@ export default {
       rigthimg: "",
       zhengimg: [],
       fanimg: [],
-      cachetime:0,
+      cachetime: 0
     };
   },
   components: {
@@ -43,39 +47,34 @@ export default {
       console.log(this.currenttime);
     },
     tonext() {
-      if(this.currentformat>=this.fomat.length-1)
-      {
-        alert('已是最后一个环节!')
-        return
+      if (this.currentformat >= this.fomat.length - 1) {
+        alert("已是最后一个环节!");
+        return;
       }
       this.currentformat++;
       this.currenttime = this.fomat[this.currentformat].time;
       this.currentspeaker = this.fomat[this.currentformat].person;
       this.currentmode = this.fomat[this.currentformat].countmode;
       this.ispause = true;
-      if(this.currentmode==2){
-          this.cachetime=this.fomat[this.currentformat].time;
+      if (this.currentmode == 2) {
+        this.cachetime = this.fomat[this.currentformat].time;
       }
     },
     changespeaker(index) {
-      
-      if(this.currentmode==2&&this.currentspeaker*index<0){
-          var t = this.currenttime;
-          this.currenttime = this.cachetime;
-          this.cachetime = t;
+      if (this.currentmode == 2 && this.currentspeaker * index < 0) {
+        var t = this.currenttime;
+        this.currenttime = this.cachetime;
+        this.cachetime = t;
       }
       this.currentspeaker = index;
-      if(index>0)
-        this.leftimg = this.zhengimg[index-1];
-      if(index<0)
-        this.rigthimg = this.fanimg[-index-1];
+      if (index > 0) this.leftimg = this.zhengimg[index - 1];
+      if (index < 0) this.rigthimg = this.fanimg[-index - 1];
     },
     reback() {
       this.$router.push("/");
     }
   },
   created() {
-    
     //快捷键
     document.onkeydown = e => {
       let key = window.event.keyCode;
@@ -90,7 +89,9 @@ export default {
       if (key == 50) this.changespeaker(2);
       if (key == 51) this.changespeaker(3);
       if (key == 52) this.changespeaker(4);
-      if (key == 27) this.ipc.send("newWindow-closed");
+      if (key == 27) {
+        if(confirm("确认退出？"))
+          this.ipc.send("newWindow-closed")};
     };
     this.fomat = this.$root.fomat;
     this.currenttime = this.fomat[this.currentformat].time; //初始化计时到第一阶段
@@ -106,10 +107,19 @@ export default {
 <style scoped>
 .tx {
   display: inline-block;
-  width: 200px;
+  width: 300px;
   border-radius: 50%;
 }
 .tm {
   display: inline-block;
+}
+
+#tittle{
+margin-top:300px;
+margin-bottom:50px;
+font-size:30px;
+font-family: 'Source Han Sans CN', 'Microsoft YaHei';
+
+
 }
 </style>

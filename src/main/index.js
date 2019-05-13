@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, MenuItem, Menu} from 'electron'
+import { app, BrowserWindow, dialog, MenuItem, Menu } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -16,9 +16,9 @@ const winURL = process.env.NODE_ENV === 'development' ?
 const newURL = process.env.NODE_ENV === 'development' ?
     `http://localhost:9080/#/timemeter` :
     `file://${__dirname}/index.html/#/timemeter`
-//const electron = require('electron');
-//const Menu = electron.Menu
-//const app = electron.app
+    //const electron = require('electron');
+    //const Menu = electron.Menu
+    //const app = electron.app
 function createWindow() {
     /**
      * Initial window options
@@ -27,9 +27,12 @@ function createWindow() {
         height: 563,
         useContentSize: true,
         width: 1000,
-        frame:true,
-        webPreferences:{
-            webSecurity:false,
+        frame: true,
+        resizable: false,
+        maximizable: false,
+        icon: 'static/icon.ico',
+        webPreferences: {
+            webSecurity: false,
         },
     })
 
@@ -69,9 +72,9 @@ ipc.on('window-max', function() {
             height: 563,
             useContentSize: true,
             width: 1000,
-            frame:false,
-            webPreferences:{
-                webSecurity:false,
+            frame: false,
+            webPreferences: {
+                webSecurity: false,
             },
         })
         newWindow.loadURL(newURL);
@@ -81,18 +84,18 @@ ipc.on('window-max', function() {
 ipc.on('window-close', function() {
     mainWindow.close();
 })
-ipc.on('open-directory-dialog',function(event,index){
+ipc.on('open-directory-dialog', function(event, index) {
     dialog.showOpenDialog({
-        properties:['openFile']
-    },function(files){
-        if(files)
-            event.sender.send('selectedItem',[files,index]);
+        properties: ['openFile']
+    }, function(files) {
+        if (files)
+            event.sender.send('selectedItem', [files, index]);
     });
 })
-ipc.on('sigShowRightClickMenu',(event)=>{
+ipc.on('sigShowRightClickMenu', (event) => {
     const menu = new Menu();
-    menu.append(new MenuItem({label:'Hello world'}));
+    menu.append(new MenuItem({ label: 'Hello world' }));
 })
-ipc.on('newWindow-closed',function(){
+ipc.on('newWindow-closed', function() {
     newWindow.close();
 })
