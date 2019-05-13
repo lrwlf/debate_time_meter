@@ -7,7 +7,10 @@ export default new Router({
     routes: [{
             path: '/',
             name: 'start',
-            component: require('@/pages/start.vue').default
+            component: require('@/pages/start.vue').default,
+            meta: {
+                isKeepAlive: true
+            },
         },
         {
             path: '/loadimg',

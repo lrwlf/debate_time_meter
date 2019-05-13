@@ -1,12 +1,12 @@
 <template>
-    <div @contextmenu.prevent="showRightMenu">
+    <div @contextmenu.prevent="showRightMenu" class="bodermenu">
         <img v-for="(item,index) in zhengimg" @click="loadzheng(index)" :key="item.id" :src="zhengimg[index]" >    
         <img v-for="(item,index) in fanimg" @click="loadfan(index+4)" :key="item.id" :src="fanimg[index]" >
         <ul class="contextmenu" v-bind:style="{left: getMenuLeft+'px',top: getMenuTop+'px'}" v-show="menuShow">
             <li v-on:click="change_background">选择背景图片</li>
         </ul>
        
-
+        <button @click="reindex">返回主界面</button>
     </div>
 </template>
 <script>
@@ -41,7 +41,12 @@ export default {
         change_background(){
             this.ipc.send('open-directory-dialog',1024);
             this.menuShow = false;
-        }  
+        },
+        reindex(){
+            this.$root.zhengimg = this.zhengimg;
+            this.$root.fanimg = this.fanimg;
+            this.$router.push('/');
+        }
     },
     computed: {
         getMenuLeft:function(e){
@@ -101,5 +106,9 @@ img{
 }
 .contextmenu li:hover {
   background: #eee;
+}
+.bordermenu{
+    width:100%;
+    height: 100%;
 }
 </style>

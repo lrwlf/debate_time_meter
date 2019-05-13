@@ -21,6 +21,8 @@ new Vue({
     template: '<App/>',
     data() {
         return {
+            zhengimg: ['static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg'],
+            fanimg: ['static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg'],
             fomat: [{
                     name: '正方开篇立论',
                     countmode: 1,
@@ -61,7 +63,7 @@ new Vue({
                     name: '正反四辩对辩论',
                     countmode: 2,
                     time: 90,
-                    person: [4, -4],
+                    person: 4,
                 },
                 {
                     name: '正方三辩盘问',
@@ -91,7 +93,7 @@ new Vue({
                     name: '自由辩论',
                     countmode: 2,
                     time: 240,
-                    person: [0, 0],
+                    person: 1,
                 },
                 {
                     name: '反方结辩',
