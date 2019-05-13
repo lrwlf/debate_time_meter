@@ -1,11 +1,9 @@
 <template>
-    <div @contextmenu.prevent="showRightMenu" class="bodermenu">
+    <div>
         <img v-for="(item,index) in zhengimg" @click="loadzheng(index)" :key="item.id" :src="zhengimg[index]" >    
         <img v-for="(item,index) in fanimg" @click="loadfan(index+4)" :key="item.id" :src="fanimg[index]" >
-        <ul class="contextmenu" v-bind:style="{left: getMenuLeft+'px',top: getMenuTop+'px'}" v-show="menuShow">
-            <li v-on:click="change_background">选择背景图片</li>
-        </ul>
-       
+        
+        <button @click="change_background">修改背景图片</button>
         <button @click="reindex">返回主界面</button>
     </div>
 </template>
@@ -30,14 +28,6 @@ export default {
             this.ipc.send('open-directory-dialog',index)
             //this.fanimg[index] = '' //在这里加载图片
         },
-        showRightMenu(e){
-            if(this.menuShow == false)
-            this.menuShow = true;
-            else this.menuShow = false;
-            this.menuLeft = e.offsetX;
-            this.menuTop = e.offsetY;
-        },
-        
         change_background(){
             this.ipc.send('open-directory-dialog',1024);
             this.menuShow = false;
@@ -48,14 +38,7 @@ export default {
             this.$router.push('/');
         }
     },
-    computed: {
-        getMenuLeft:function(e){
-            return this.menuLeft;
-        },
-        getMenuTop:function(e){
-            return this.menuTop;
-        },
-    },
+    
     created(){
         for(let i=0;i<4;++i){
             if(this.zhengimg[i] == undefined || this.zhengimg[i]=='static/defaultimg.jpg')
@@ -85,28 +68,7 @@ img{
      height: 120px;
      border-radius:60px
 }
-.contextmenu {
-  margin: 0;
-  background: #fff;
-  width: 135px;
-  z-index: 100;
-  position: absolute;
-  list-style-type: none;
-  padding: 5px 0;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 400;
-  color: #333;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .3)
-}
-.contextmenu li {
-  margin: 0;
-  padding: 7px 16px;
-  cursor: pointer;
-}
-.contextmenu li:hover {
-  background: #eee;
-}
+
 .bordermenu{
     width:100%;
     height: 100%;

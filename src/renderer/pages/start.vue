@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @contextmenu.prevent="showRightMenu" class="bodermenu" @click="LshowRightMenu">
         <div class="aside">
             <span>正方</span>
             <input type="text" placeholder="请输入正方名称"/>
@@ -10,7 +10,9 @@
             <input type="text" placeholder="请输入反方观点"/>
         </div>
         <button id='startdebate' @click="startdebate">开始辩论</button>
-        <button @click="toimgpages">toimgpages</button>
+        <ul class="contextmenu" v-bind:style="{left: getMenuLeft+'px',top: getMenuTop+'px'}" v-show="menuShow">
+            <li v-on:click="change_picture">修改配置</li>
+        </ul>
     </div>
 </template>
 <script>
@@ -18,6 +20,10 @@ export default {
     data(){
         return{
             input:'',
+            ipc:require('electron').ipcRenderer,
+            menuShow:false,
+            menuLeft:0,
+            menuTop:0,
         }
     },
     methods:{
@@ -26,8 +32,29 @@ export default {
         },
         startdebate(){
             this.$router.push('timemeter')
+        },
+        showRightMenu(e){
+            if(this.menuShow == false)
+            this.menuShow = true;
+            else this.menuShow = false;
+            this.menuLeft = e.offsetX;
+            this.menuTop = e.offsetY;
+        },
+        LshowRightMenu(e){
+            this.menuShow = false;
+        },
+        change_picture(){
+            this.$router.push('loadimg');
         }
-    }
+    },
+    computed: {
+        getMenuLeft:function(e){
+            return this.menuLeft;
+        },
+        getMenuTop:function(e){
+            return this.menuTop;
+        },
+    },
 }
 </script>
 <style scoped>
@@ -67,4 +94,30 @@ export default {
         margin: 0 auto;
         margin-top: 30px;
     }
-</style>
+    .contextmenu {
+    margin: 0;
+    background: #fff;
+    width: 135px;
+    z-index: 100;
+    position: absolute;
+    list-style-type: none;
+    padding: 5px 0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .3)
+    }
+    .contextmenu li {
+    margin: 0;
+    padding: 7px 16px;
+    cursor: pointer;
+    }
+    .contextmenu li:hover {
+    background: #eee;
+    }
+    .bordermenu{
+        width:100%;
+        height: 100%;
+    }
+</style>    

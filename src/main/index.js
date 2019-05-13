@@ -24,6 +24,7 @@ function createWindow() {
         height: 563,
         useContentSize: true,
         width: 1000,
+        frame:true,
         webPreferences:{
             webSecurity:false,
         },
@@ -61,6 +62,16 @@ ipc.on('window-max', function() {
     if (mainWindow.isMaximized()) {
         mainWindow.restore();
     } else {
+        mainWindow = null;
+        mainWindow = new BrowserWindow({
+            height: 563,
+            useContentSize: true,
+            width: 1000,
+            frame:false,
+            webPreferences:{
+                webSecurity:false,
+            },
+        })
         mainWindow.maximize();
     }
 })
