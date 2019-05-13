@@ -67,13 +67,13 @@ new Vue({
                 },
                 {
                     name: '正方三辩盘问',
-                    countmode: 3,
+                    countmode: 1,
                     time: 90,
                     person: 3,
                 },
                 {
                     name: '反方三辩盘问',
-                    countmode: 3,
+                    countmode: 1,
                     time: 90,
                     person: -3,
                 },
