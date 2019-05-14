@@ -22,5 +22,10 @@ export default new Router({
             name: 'timemeter',
             component: require('@/pages/timemeter.vue').default
         },
+        {
+            path: '/showpage',
+            name: 'showpage',
+            component: require('@/pages/showpage.vue').default
+        },
     ]
 })

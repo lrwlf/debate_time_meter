@@ -23,6 +23,9 @@ new Vue({
         return {
             zhengimg: ['static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg'],
             fanimg: ['static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg'],
+            xiaohui: ['static/defaultimg.jpg', 'static/defaultimg.jpg'], //校徽
+            topicz: '',
+            topicf: '',
             fomat: [{
                     name: '正方开篇立论',
                     countmode: 1,

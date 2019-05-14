@@ -14,8 +14,8 @@ const winURL = process.env.NODE_ENV === 'development' ?
     `http://localhost:9080` :
     `file://${__dirname}/index.html`
 const newURL = process.env.NODE_ENV === 'development' ?
-    `http://localhost:9080/#/timemeter` :
-    `file://${__dirname}/index.html#/timemeter`
+    `http://localhost:9080/#/showpage` :
+    `file://${__dirname}/index.html#/showpage`
     //const electron = require('electron');
     //const Menu = electron.Menu
     //const app = electron.app

@@ -5,13 +5,17 @@
       <img src="../assets/rm.png" id="rm" v-show="!isleft">
 
       <div id="tittle">
-        <h3>&lt;{{fomat[currentformat].name}}></h3>
+        <img src="../assets/lfs.png" ><h3>{{fomat[currentformat].name}}</h3><img src="../assets/rts.png">
       </div>
       <div class="midcontent">
         <img class="tx" :src="leftimg">
         <countdown class="tm" :pause="ispause" v-model="currenttime" @down="out"></countdown>
         <img class="tx" :src="rightimg">
       </div>
+      <span class='undbq'>正方</span>
+      <div id='aspace'></div>
+      <span class='undbq'>反方</span>
+      <br>
       <button @click="pause_start" ref="pskey">开始/暂停</button>
       <button @click="tonext">nextformat</button>
       <input type="text" v-model="currenttime">
@@ -112,7 +116,7 @@ export default {
 .tx {
   display: inline-block;
   width: 250px;
-  border-radius: 50%;
+  border-radius: 50%; 
 }
 .tm {
   display: inline-block;
@@ -130,9 +134,32 @@ export default {
   top:330px;
 }
 #tittle {
-  margin-top: 310px;
-  margin-bottom: 60px;
-  font-size: 30px;
+  display: inline-block;
+  margin-top: 250px;
+  margin-bottom: 25px;
+  font-size: 35px;
   font-family: bdzy;
+  width:100%;
+  color: #b43e34;
+}
+#tittle h3{
+  display: inline-block;
+}
+#tittle img{
+  vertical-align:middle;
+  margin-top: -11px;
+}
+.undbq{
+  display: inline-block;
+  font-size: 30px;
+  background: rgba(158, 158, 158, 0.7);
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 50px;
+}
+#aspace{
+  display: inline-block;
+  width: 65%;
 }
 </style>
