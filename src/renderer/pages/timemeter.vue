@@ -1,16 +1,16 @@
 <template>
   <div>
     <center>
-      <img src="../assets/lm.png" id="lm" v-show="isleft">
-      <img src="../assets/rm.png" id="rm" v-show="!isleft">
+      <img src="../assets/lm.png" id="lm" v-show="isleft&&!showmode">
+      <img src="../assets/rm.png" id="rm" v-show="!isleft&&!showmode">
 
-      <div id="tittle">
+      <div id="tittle" :style="showmode?'margin-top:150px;':'' ">
         <img src="../assets/lfs.png" ><h3>{{fomat[currentformat].name}}</h3><img src="../assets/rts.png">
       </div>
       <div class="midcontent">
-        <img class="tx" :src="leftimg">
-        <countdown class="tm" :pause="ispause" v-model="currenttime" ></countdown>
-        <img class="tx" :src="rightimg">
+        <img class="tx" :src="leftimg" v-show="!showmode">
+        <countdown class="tm" :showmode='showmode' :pause="ispause" v-model="currenttime" ></countdown>
+        <img class="tx" :src="rightimg" v-show="!showmode">
       </div>
       <span class='undbq'>正方</span>
       <div id='aspace'></div>
@@ -76,6 +76,9 @@ export default {
       this.currentspeaker = index;
       if (index > 0) {this.leftimg = this.zhengimg[index - 1];this.isleft=true;}
       if (index < 0) {this.rigthimg = this.fanimg[-index - 1];this.isleft=false;}
+    },
+    changeShowmode(){
+      this.showmode = !this.showmode;
     }
   },
   created() {
@@ -93,8 +96,10 @@ export default {
       if (key == 50) this.changespeaker(2);
       if (key == 51) this.changespeaker(3);
       if (key == 52) this.changespeaker(4);
-            if (key == 27) {if (confirm("确认退出？")) {this.ipc.send('window-close');}
+      if (key == 27) {
+        if (confirm("确认退出？")) {this.ipc.send('window-close');}
       }
+      if(key == 77) this.changeShowmode();
     };
     this.fomat = this.$root.fomat;
     this.currenttime = this.fomat[this.currentformat].time; //初始化计时到第一阶段

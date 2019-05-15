@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div class="num">
+    <div class="num" :style="!showmode?'':'width:300px;height:300px;'">
       <img :src="topath(minute)">
     </div>
-    <div class="num" id = 'split'>
+    <div class="num" id = 'split' :style="!showmode?'':'width:250px;height:300px;'" >
       <img src="static/split.png">
     </div>
-    <div class="num">
+    <div class="num" :style="!showmode?'':'width:300px;height:300px;'" >
       <img :src="topath(ten)">
     </div>
-    <div class="num">
+    <div class="num" :style="!showmode?'':'width:300px;height:300px;'" >
       <img :src="topath(one)">
     </div>
   </div>
@@ -49,6 +49,7 @@ export default {
   props:{
       pause:Boolean,
       currenttime:Number,
+      showmode:Boolean,
   },
   watch:{
       pause:function(){
@@ -66,6 +67,12 @@ export default {
   display: inline-block;
   width: 250px;
   height: 250px;
+  text-align: center;
+}
+#bnum {
+  display: inline-block;
+  width: 320px;
+  height: 320px;
   text-align: center;
 }
 .num img{
