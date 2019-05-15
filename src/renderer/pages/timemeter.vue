@@ -156,7 +156,8 @@ export default {
 <style scoped>
 .tx {
   display: inline-block;
-  width: 13%;
+  width: 220px;
+  height: 220px;
   border-radius: 50%; 
 }
 .tm {

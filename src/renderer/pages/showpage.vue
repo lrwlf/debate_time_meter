@@ -48,7 +48,8 @@ export default {
     text-align: center;
 }
 .xhimg{
-  width: 27%;
+  width: 220px;
+  height: 220px;
   border-radius: 50%; 
   display: block;
   margin: 0 auto;

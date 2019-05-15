@@ -1,7 +1,6 @@
 <template>
     <div>
-        <textarea v-bind="data" id="data"></textarea>
-
+        <p >{{data}}</p>
     </div>
 </template>
 <script>
@@ -25,7 +24,7 @@ export default {
 }
 </script>
 <style scoped>
-#data{
+p{
     width: 100%;
     height: 100%;
 }
