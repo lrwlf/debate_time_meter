@@ -15,6 +15,7 @@ export default {
             zhengimg:[], //这个数组放加载的四个正方图片的路径
             fanimg:[], //反方的四个图片路径
             ipc:require('electron').ipcRenderer,
+            xiaohui:[],
             menuShow:false,
             menuLeft:0,
             menuTop:0,
@@ -35,11 +36,13 @@ export default {
         reindex(){
             this.$root.zhengimg = this.zhengimg;
             this.$root.fanimg = this.fanimg;
+            this.$root.xiaohui=this.xiaohui;
             this.$router.push('/');
         }
     },
     
     created(){
+        this.xiaohui = this.$root.xiaohui;
         for(let i=0;i<4;++i){
             if(this.zhengimg[i] == undefined || this.zhengimg[i]=='static/defaultimg.jpg')
             this.zhengimg[i] = 'static/defaultimg.jpg' //加载默认图片
