@@ -77,6 +77,8 @@ export default {
       if (this.currentmode == 2) {
         this.cachetime = this.fomat[this.currentformat].time;
       }
+      this.theSpeakertime=this.currenttime;
+
     },
     resetshujv(){
       this.ashujv=[{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},];
@@ -156,8 +158,8 @@ export default {
 <style scoped>
 .tx {
   display: inline-block;
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%; 
 }
 .tm {

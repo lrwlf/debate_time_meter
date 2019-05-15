@@ -1,6 +1,7 @@
 <template>
     <div>
-        <p >{{data}}</p>
+        <textarea :value="data" id="data"></textarea>
+
     </div>
 </template>
 <script>
@@ -16,7 +17,7 @@ export default {
             this.data+= '-------'+element.name+'--------\n';
             for(let i = 0;i<element.data.length;++i){
                 if(element.data[i].times){
-                    this.data += ord[i]+'发言'+this.element.data[i].times+' 发言时间'+this.element.data[i].time+'秒\n'
+                    this.data +=this.ord[i]+'发言'+element.data[i].times+'次 发言时间'+element.data[i].time+'秒\n'
                 }
             }
         });
@@ -24,8 +25,8 @@ export default {
 }
 </script>
 <style scoped>
-p{
-    width: 100%;
-    height: 100%;
+#data{
+    width:900px;
+    height: 450px;
 }
 </style>
