@@ -1,6 +1,10 @@
 <template>
     <div>
-        <img v-for="(item,index) in zhengimg" @click="loadzheng(index)" :key="item.id" :src="zhengimg[index]" >    
+        <img :src="xiaohui[0]" @click="loadzheng(100)">
+        <img v-for="(item,index) in zhengimg" @click="loadzheng(index)" :key="item.id" :src="zhengimg[index]" > 
+        <br>
+
+        <img :src="xiaohui[1]" @click="loadfan(200)"> 
         <img v-for="(item,index) in fanimg" @click="loadfan(index+4)" :key="item.id" :src="fanimg[index]" >
         
         <button @click="change_background">修改背景图片</button>
@@ -50,6 +54,10 @@ export default {
             this.$set(this.zhengimg,path[1],path[0][0].replace(/\\/g,"/"))
             else if (path[1] >= 4 && path[1] < 8)
             this.$set(this.fanimg,path[1]-4,path[0][0].replace(/\\/g,"/"))
+            else if(path[1] == 100)
+            this.$set(this.xiaohui,0,path[0][0].replace(/\\/g,"/"))
+            else if(path[1] == 200)
+            this.$set(this.xiaohui,1,path[0][0].replace(/\\/g,"/"))
             else 
             document.querySelector('body').setAttribute('style', 'background:url('+path[0][0].replace(/\\/g,"/")+');background-size:cover;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei')
         })
