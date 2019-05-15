@@ -39,8 +39,8 @@ export default {
     startdebate() {
       this.$root.topicz = this.topicz;
       this.$root.topicf = this.topicf;
-      this.ipc = require("electron").ipcRenderer;
       this.ipc.send("window-max");
+      this.$router.push('/showpage')
     },
     showRightMenu(e) {
       if (this.menuShow == false) this.menuShow = true;

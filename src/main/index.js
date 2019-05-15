@@ -13,9 +13,6 @@ let newWindow
 const winURL = process.env.NODE_ENV === 'development' ?
     `http://localhost:9080` :
     `file://${__dirname}/index.html`
-const newURL = process.env.NODE_ENV === 'development' ?
-    `http://localhost:9080/#/showpage` :
-    `file://${__dirname}/index.html#/showpage`
     //const electron = require('electron');
     //const Menu = electron.Menu
     //const app = electron.app
@@ -65,23 +62,8 @@ ipc.on('window-min', function() {
     })
     //登录窗口最大化
 ipc.on('window-max', function() {
-    if (mainWindow.isMaximized()) {
-        mainWindow.restore();
-    } else {
-        newWindow = new BrowserWindow({
-            height: 563,
-            useContentSize: true,
-            width: 1000,
-            frame: false,
-            icon: 'static/icon.ico',
-            webPreferences: {
-                webSecurity: false,
-            },
-        })
-        newWindow.loadURL(newURL);
-        newWindow.setKiosk(true);
-        
-    }
+    mainWindow.setSize(1920, 1200);
+    mainWindow.setKiosk(true);
 })
 ipc.on('window-close', function() {
     mainWindow.close();
@@ -97,7 +79,4 @@ ipc.on('open-directory-dialog', function(event, index) {
 ipc.on('sigShowRightClickMenu', (event) => {
     const menu = new Menu();
     menu.append(new MenuItem({ label: 'Hello world' }));
-})
-ipc.on('newWindow-closed', function() {
-    newWindow.close();
 })
