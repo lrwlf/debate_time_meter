@@ -12,7 +12,7 @@
       <img :src="xiaohui[1]" @click="loadfan(200)">
       <p>反方校徽</p>
     </div><div class="imgdiv" v-for="(item,index) in fanimg" :key="item.id">
-      <img @click="loadfan(index)" :src="fanimg[index]">
+      <img @click="loadfan(index+4)" :src="fanimg[index]">
       <p>反方{{index+1}}辩</p>
     </div>
     <br>
