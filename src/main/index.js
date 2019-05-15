@@ -62,7 +62,7 @@ ipc.on('window-min', function() {
     })
     //登录窗口最大化
 ipc.on('window-max', function() {
-    mainWindow.setSize(1920, 1200);
+    mainWindow.setSize(electron.screen.getPrimaryDisplay().workAreaSize.width, electron.screen.getPrimaryDisplay().workAreaSize.height + 20); //高度溢出遮盖顶栏
     mainWindow.setKiosk(true);
 })
 ipc.on('window-close', function() {
