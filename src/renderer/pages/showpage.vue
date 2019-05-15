@@ -34,7 +34,7 @@ export default {
         document.onkeydown = e => {
             let key = window.event.keyCode;
             if(key==13) this.nextpage();
-            if (key == 27) {if (confirm("确认退出？")) this.ipc.send("window-close");
+            if (key == 27) {if (confirm("确认退出？")) {this.$router.push('/');this.ipc.send('reNomalsize');}
       }
         }
       }
@@ -48,6 +48,8 @@ export default {
     text-align: center;
 }
 .xhimg{
+  top: 300px;
+  position: relative;
   width: 250px;
   border-radius: 50%; 
   display: block;
@@ -61,6 +63,8 @@ export default {
   padding-left: 30px;
   padding-right: 30px;
   border-radius: 50px;
+  top: 420px;
+  position: relative;
 }
 .topic{
   display: block;
@@ -70,5 +74,9 @@ export default {
   padding-left: 30px;
   padding-right: 30px;
   border-radius: 50px;
+  width: 40%;
+  margin: auto;
+  top: 460px;
+  position: relative;
 }
 </style>

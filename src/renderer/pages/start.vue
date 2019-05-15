@@ -70,16 +70,17 @@ export default {
 </script>
 <style scoped>
 .aside input {
-  background-color: rgba(158, 158, 158, 0.7);
+  background-color: rgba(184, 184, 184, 0.7);
   width: 80%;
   height: 50px;
   border-radius: 9px;
   border: none;
   font-size: 20px;
   outline: none;
-  color: aliceblue;
+  color: black;
   margin-top: 50px;
   text-align: center;
+  font-family: bdzy;
 }
 .aside {
   width: 50%;
@@ -90,18 +91,23 @@ export default {
 }
 .aside span {
   display: inline-block;
+  font-size: 25px;
+  color:#575555;
   width: 100%;
 }
 #startdebate {
   width: 120px;
   height: 120px;
   display: block;
-  background-color: rgba(158, 158, 158, 0.7);
+  background-color: rgba(184, 184, 184, 0.7);
   border-radius: 50%;
   border: none;
   outline: none;
   margin: 0 auto;
   margin-top: 30px;
+  font-family: bdzy;
+  color: #c15239;
+  font-size: 25px;
 }
 .contextmenu {
   margin: 0;

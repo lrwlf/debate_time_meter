@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, MenuItem, Menu } from 'electron'
+import { app, BrowserWindow, dialog, MenuItem, Menu, ipcRenderer } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -64,6 +64,11 @@ ipc.on('window-min', function() {
 ipc.on('window-max', function() {
     mainWindow.setSize(electron.screen.getPrimaryDisplay().workAreaSize.width, electron.screen.getPrimaryDisplay().workAreaSize.height + 20); //高度溢出遮盖顶栏
     mainWindow.setKiosk(true);
+})
+ipc.on('reNomalsize', function() {
+    mainWindow.setKiosk(false);
+    mainWindow.setBounds({ x: 440, y: 225, width: 1000, height: 563 })
+
 })
 ipc.on('window-close', function() {
     mainWindow.close();
