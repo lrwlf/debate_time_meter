@@ -38,7 +38,7 @@ export default {
       currentspeaker: 0,
       currentmode: "",
       leftimg: "",
-      rigthimg: "",
+      rightimg: "",
       zhengimg: [],
       fanimg: [],
       cachetime: 0,
@@ -97,7 +97,7 @@ export default {
       }
       this.currentspeaker = index;
       if (index > 0) {this.leftimg = this.zhengimg[index - 1];this.isleft=true;}
-      if (index < 0) {this.rigthimg = this.fanimg[-index - 1];this.isleft=false;}
+      if (index < 0) {this.rightimg = this.fanimg[-index - 1];this.isleft=false;}
     },
     changeShowmode(){
       this.showmode = !this.showmode;
