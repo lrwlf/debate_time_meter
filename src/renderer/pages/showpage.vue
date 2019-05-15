@@ -34,7 +34,7 @@ export default {
         document.onkeydown = e => {
             let key = window.event.keyCode;
             if(key==13) this.nextpage();
-            if (key == 27) {if (confirm("确认退出？")) {this.$router.push('/');this.ipc.send('reNomalsize');}
+            if (key == 27) {if (confirm("确认退出？")) {this.ipc.send('window-close');}
       }
         }
       }

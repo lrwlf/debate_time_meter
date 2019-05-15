@@ -9,17 +9,18 @@
       </div>
       <div class="midcontent">
         <img class="tx" :src="leftimg">
-        <countdown class="tm" :pause="ispause" v-model="currenttime" @down="out"></countdown>
+        <countdown class="tm" :pause="ispause" v-model="currenttime" ></countdown>
         <img class="tx" :src="rightimg">
       </div>
       <span class='undbq'>正方</span>
       <div id='aspace'></div>
       <span class='undbq'>反方</span>
-      <br>
-      <button @click="pause_start" ref="pskey">开始/暂停</button>
-      <button @click="tonext">nextformat</button>
-      <input type="text" v-model="currenttime">
-      <button @click="reback">返回</button>
+      <br><br><br><br>
+      <div>
+      <button class="unbtn" @click="pause_start" ref="pskey">开始/暂停</button>
+      <div id='bspace'></div>
+      <button  class="unbtn" @click="tonext">下一环节</button>
+      </div>
     </center>
   </div>
 </template>
@@ -42,6 +43,7 @@ export default {
       fanimg: [],
       cachetime: 0,
       isleft:true,
+      showmode:false,
     };
   },
   components: {
@@ -50,9 +52,6 @@ export default {
   methods: {
     pause_start() {
       this.ispause = !this.ispause;
-    },
-    out() {
-      console.log(this.currenttime);
     },
     tonext() {
       if (this.currentformat >= this.fomat.length - 1) {
@@ -77,9 +76,6 @@ export default {
       this.currentspeaker = index;
       if (index > 0) {this.leftimg = this.zhengimg[index - 1];this.isleft=true;}
       if (index < 0) {this.rigthimg = this.fanimg[-index - 1];this.isleft=false;}
-    },
-    reback() {
-      this.$router.push("/");
     }
   },
   created() {
@@ -97,8 +93,7 @@ export default {
       if (key == 50) this.changespeaker(2);
       if (key == 51) this.changespeaker(3);
       if (key == 52) this.changespeaker(4);
-      if (key == 27) {
-        if (confirm("确认退出？")) this.ipc.send("newWindow-closed");
+            if (key == 27) {if (confirm("确认退出？")) {this.ipc.send('window-close');}
       }
     };
     this.fomat = this.$root.fomat;
@@ -158,8 +153,24 @@ export default {
   padding-right: 30px;
   border-radius: 50px;
 }
+.unbtn{
+  display: inline-block;
+  font-size: 30px;
+  border: 0;
+  outline: 0;  
+  background: rgba(158, 158, 158, 0.7);
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 50px;
+  font-family: bdzy;
+}
 #aspace{
   display: inline-block;
   width: 65%;
+}
+#bspace{
+  display: inline-block;
+  width: 61%;
 }
 </style>
