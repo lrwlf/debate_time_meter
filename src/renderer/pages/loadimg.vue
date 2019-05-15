@@ -43,13 +43,8 @@ export default {
     
     created(){
         this.xiaohui = this.$root.xiaohui;
-        for(let i=0;i<4;++i){
-            if(this.zhengimg[i] == undefined || this.zhengimg[i]=='static/defaultimg.jpg')
-            this.zhengimg[i] = 'static/defaultimg.jpg' //加载默认图片
-
-            if(this.fanimg[i] == undefined || this.fanimg[i] =='static/defaultimg.jpg')
-            this.fanimg[i] = 'static/defaultimg.jpg'
-        }
+        this.zhengimg =this.$root.zhengimg; 
+        this.fanimg =this.$root.fanimg;
         this.ipc.on('selectedItem',(event,path)=>{
             if(path[1]>=0 && path[1] < 4)
             this.$set(this.zhengimg,path[1],path[0][0].replace(/\\/g,"/"))
