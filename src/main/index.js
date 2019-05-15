@@ -79,7 +79,8 @@ ipc.on('window-max', function() {
             },
         })
         newWindow.loadURL(newURL);
-        newWindow.maximize();
+        newWindow.setKiosk(true);
+        
     }
 })
 ipc.on('window-close', function() {
