@@ -30,7 +30,7 @@ import { isIPv4 } from "net";
 export default {
   data() {
     return {
-      ipc: require("electron").ipcRenderer,
+      ipc: '',
       currenttime: 65,
       ispause: true,
       fomat: "",
@@ -44,6 +44,8 @@ export default {
       cachetime: 0,
       isleft:true,
       showmode:false,
+      theSpeakertime:0,
+      ashujv:[{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},],
     };
   },
   components: {
@@ -54,8 +56,17 @@ export default {
       this.ispause = !this.ispause;
     },
     tonext() {
+      if(this.fomat[this.currentformat].statictis) {  
+        //是否统计
+        this.$root.statictis.push({name:this.fomat[this.currentformat].name,data:this.ashujv});
+        this.resetshujv(); 
+      }
       if (this.currentformat >= this.fomat.length - 1) {
-        alert("已是最后一个环节!");
+        if (confirm("已是最后一个环节，是否查看统计结果？")) 
+        {
+          this.ipc.send('reNomalsize');
+          this.$router.push('/statictis');
+        }
         return;
       }
       this.currentformat++;
@@ -67,11 +78,20 @@ export default {
         this.cachetime = this.fomat[this.currentformat].time;
       }
     },
+    resetshujv(){
+      this.ashujv=[{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},];
+    },
     changespeaker(index) {
+      if(this.fomat[this.currentformat].statictis) {  
+        this.ashujv[this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].times++;
+        this.ashujv[this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].time+= this.theSpeakertime-this.currenttime;
+        this.theSpeakertime=this.currenttime;
+      }
       if (this.currentmode == 2 && this.currentspeaker * index < 0) {
         var t = this.currenttime;
         this.currenttime = this.cachetime;
         this.cachetime = t;
+        if(this.fomat[this.currentformat].statictis) this.theSpeakertime=this.currenttime;
       }
       this.currentspeaker = index;
       if (index > 0) {this.leftimg = this.zhengimg[index - 1];this.isleft=true;}
@@ -100,6 +120,7 @@ export default {
     }
   },
   created() {
+    this.ipc=require("electron").ipcRenderer;
     //快捷键
     document.onkeydown = e => {
       let key = window.event.keyCode;
@@ -118,6 +139,7 @@ export default {
         if (confirm("确认退出？")) {this.ipc.send('window-close');}
       }
       if(key == 77) this.changeShowmode();
+      if(key==13) this.tonext();
     };
     this.fomat = this.$root.fomat;
     this.currenttime = this.fomat[this.currentformat].time; //初始化计时到第一阶段
@@ -127,6 +149,7 @@ export default {
     this.fanimg = this.$root.fanimg;
     this.leftimg = this.zhengimg[0];
     this.rightimg = this.fanimg[0];
+    this.theSpeakertime=this.fomat[this.currentformat].time;
   }
 };
 </script>

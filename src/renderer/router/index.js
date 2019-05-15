@@ -27,5 +27,10 @@ export default new Router({
             name: 'showpage',
             component: require('@/pages/showpage.vue').default
         },
+        {
+            path: '/statictis',
+            name: 'statictis',
+            component: require('@/pages/statictis.vue').default
+        },
     ]
 })
