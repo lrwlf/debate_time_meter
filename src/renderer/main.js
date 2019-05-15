@@ -24,6 +24,7 @@ new Vue({
             zhengimg: ['static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg'],
             fanimg: ['static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg'],
             xiaohui: ['static/defaultimg.jpg', 'static/defaultimg.jpg'], //校徽
+            vsimg:'static/vs.jpg',
             topicz: '',
             topicf: '',
             fomat: [{

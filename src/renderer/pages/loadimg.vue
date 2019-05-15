@@ -1,12 +1,29 @@
 <template>
-    <div>
-        <img :src="xiaohui[0]" @click="loadzheng(100)">
-        <img v-for="(item,index) in zhengimg" @click="loadzheng(index)" :key="item.id" :src="zhengimg[index]" > 
+    <div class="aside">
+        <div v-for="(item,index) in zhengimg" :key="item.id">
+            <img  @click="loadzheng(index)"  :src="zhengimg[index]" >
+            <p>正方{{index+1}}辩</p>
+        </div>
         <br>
 
-        <img :src="xiaohui[1]" @click="loadfan(200)"> 
-        <img v-for="(item,index) in fanimg" @click="loadfan(index+4)" :key="item.id" :src="fanimg[index]" >
+        <div v-for="(item,index) in fanimg" :key="item.id">
+            <img  @click="loadfan(index)"  :src="fanimg[index]" >
+            <p>反方{{index+1}}辩</p>
+        </div>
+        <br>
+        <div>
+            <div>
+                <img :src="xiaohui[0]" @click="loadzheng(100)">
+                <p>正方</p>
+            </div>
+                
+            <div>
+                <img :src="xiaohui[1]" @click="loadfan(200)"> 
+                <p>反方</p>
+            </div>
+        </div>
         
+        <br>
         <button @click="change_background">修改背景图片</button>
         <button @click="reindex">返回主界面</button>
     </div>
@@ -20,6 +37,7 @@ export default {
             fanimg:[], //反方的四个图片路径
             ipc:require('electron').ipcRenderer,
             xiaohui:[],
+            vsimg,
             menuShow:false,
             menuLeft:0,
             menuTop:0,
@@ -47,6 +65,7 @@ export default {
     
     created(){
         this.xiaohui = this.$root.xiaohui;
+        this.vsimg = this.$root.vsimg;
         this.zhengimg =this.$root.zhengimg; 
         this.fanimg =this.$root.fanimg;
         this.ipc.on('selectedItem',(event,path)=>{
@@ -78,5 +97,24 @@ img{
 .bordermenu{
     width:100%;
     height: 100%;
+}
+.aside div {
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+}
+.aside button {
+  display: inline-block;
+  background-color: rgba(184, 184, 184, 0.7);
+  width: 30%;
+  height: 50px;
+  border-radius: 9px;
+  border: none;
+  font-size: 20px;
+  outline: none;
+  color: black;
+  margin-top: 50px;
+  text-align: center;
+  font-family: bdzy;
 }
 </style>
