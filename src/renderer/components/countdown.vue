@@ -55,7 +55,7 @@ export default {
       pause:function(){
             if (!this.pause) this.timmer=setTimeout(this.timedown, 1000);
             else clearTimeout(this.timmer);
-      }
+      },
   },
   created() {
 

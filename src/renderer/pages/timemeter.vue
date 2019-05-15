@@ -4,7 +4,7 @@
       <img src="../assets/lm.png" id="lm" v-show="isleft&&!showmode">
       <img src="../assets/rm.png" id="rm" v-show="!isleft&&!showmode">
 
-      <div id="tittle" :style="showmode?'margin-top:150px;':'' ">
+      <div id="tittle" :style="showmode?'margin-top:10%;':'' ">
         <img src="../assets/lfs.png" ><h3>{{fomat[currentformat].name}}</h3><img src="../assets/rts.png">
       </div>
       <div class="midcontent">
@@ -79,6 +79,24 @@ export default {
     },
     changeShowmode(){
       this.showmode = !this.showmode;
+      if(this.$root.bgchanged)
+        return;
+      if(this.showmode){
+          document
+        .querySelector("body")
+        .setAttribute(
+          "style",
+          "background:url(static/bg1.svg);background-size:cover;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
+        );
+      }
+      else{
+          document
+        .querySelector("body")
+        .setAttribute(
+          "style",
+          "background:url('static/bg.svg');background-size:cover;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
+        );
+      }
     }
   },
   created() {
@@ -115,28 +133,27 @@ export default {
 <style scoped>
 .tx {
   display: inline-block;
-  width: 250px;
+  width: 13%;
   border-radius: 50%; 
 }
 .tm {
   display: inline-block;
-  margin-left: 120px;
-  margin-right: 120px;
+  margin-left: 6.5%;
+  margin-right: 6.5%;
 }
 #lm{
   position: absolute;
-  left: 135px;
-  top:330px;
+  left: 7%;
+  top:32%;
   }
 #rm{
   position: absolute;
-  right: 135px;
-  top:330px;
+  right: 7%;
+  top:32%;
 }
 #tittle {
   display: inline-block;
-  margin-top: 250px;
-  margin-bottom: 25px;
+  margin-top: 15%;
   font-size: 35px;
   font-family: bdzy;
   width:100%;
@@ -147,7 +164,7 @@ export default {
 }
 #tittle img{
   vertical-align:middle;
-  margin-top: -11px;
+  margin-top: -0.8%;
 }
 .undbq{
   display: inline-block;
@@ -177,5 +194,8 @@ export default {
 #bspace{
   display: inline-block;
   width: 61%;
+}
+span{
+  font-family: bdzy;
 }
 </style>

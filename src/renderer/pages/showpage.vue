@@ -48,12 +48,12 @@ export default {
     text-align: center;
 }
 .xhimg{
-  top: 300px;
-  position: relative;
-  width: 250px;
+  width: 27%;
   border-radius: 50%; 
   display: block;
   margin: 0 auto;
+  margin-top: 30%;
+
 }
 .undbq{
   display: inline-block;
@@ -63,9 +63,9 @@ export default {
   padding-left: 30px;
   padding-right: 30px;
   border-radius: 50px;
-  top: 420px;
-  position: relative;
-}
+  margin-top:10%;
+
+  }
 .topic{
   display: block;
   font-size: 30px;
@@ -76,7 +76,6 @@ export default {
   border-radius: 50px;
   width: 40%;
   margin: auto;
-  top: 460px;
-  position: relative;
+  margin-top: 5%;
 }
 </style>

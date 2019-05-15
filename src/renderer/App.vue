@@ -21,7 +21,7 @@
     src: url('../../static/bdzy.ttf');
   }
   body{
-    background: url('./assets/bg.svg');
+    background: url('../../static/bg.svg');
     background-size:cover;
     background-repeat: no-repeat;
     font-family:bdzy;

@@ -21,6 +21,7 @@ new Vue({
     template: '<App/>',
     data() {
         return {
+            bgchanged: false,
             zhengimg: ['static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg'],
             fanimg: ['static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg', 'static/defaultimg.jpg'],
             xiaohui: ['static/defaultimg.jpg', 'static/defaultimg.jpg'], //校徽

@@ -2,7 +2,7 @@
   <div class="aside">
     <div class="imgdiv">
       <img :src="xiaohui[0]" @click="loadzheng(100)">
-      <p>正方</p>
+      <p>正方校徽</p>
     </div><div class="imgdiv" v-for="(item,index) in zhengimg" :key="item.id">
       <img @click="loadzheng(index)" :src="zhengimg[index]">
       <p>正方{{index+1}}辩</p>
@@ -10,7 +10,7 @@
     <br>
     <div class="imgdiv">
       <img :src="xiaohui[1]" @click="loadfan(200)">
-      <p>反方</p>
+      <p>反方校徽</p>
     </div><div class="imgdiv" v-for="(item,index) in fanimg" :key="item.id">
       <img @click="loadfan(index)" :src="fanimg[index]">
       <p>反方{{index+1}}辩</p>
@@ -71,6 +71,8 @@ export default {
       else if (path[1] == 200)
         this.$set(this.xiaohui, 1, path[0][0].replace(/\\/g, "/"));
       else
+      {
+        this.$root.bgchanged=true;
         document
           .querySelector("body")
           .setAttribute(
@@ -79,6 +81,7 @@ export default {
               path[0][0].replace(/\\/g, "/") +
               ");background-size:cover;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
           );
+      }
     });
   }
 };
