@@ -55,6 +55,7 @@ export default {
     pause_start() {
       if(this.currentspeaker==0){
         alert("请选择发言人!")
+        return;
       }
       this.ispause = !this.ispause;
     },
