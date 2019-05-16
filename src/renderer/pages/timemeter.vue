@@ -1,11 +1,11 @@
 <template>
   <div>
     <center>
-      <img src="../assets/lm.png" id="lm" v-show="isleft&&!showmode">
-      <img src="../assets/rm.png" id="rm" v-show="!isleft&&!showmode">
+      <img src="../assets/lm.png" id="lm" v-show="isleft&&!showmode&&showit">
+      <img src="../assets/rm.png" id="rm" v-show="!isleft&&!showmode&&showit">
 
       <div id="tittle" :style="showmode?'margin-top:10%;':'' ">
-        <img src="../assets/lfs.png" ><h3>{{fomat[currentformat].name}}</h3><img src="../assets/rts.png">
+        <img @click="topre" src="../assets/lfs.png" ><h3>{{fomat[currentformat].name}}</h3><img @click="tonext" src="../assets/rts.png">
       </div>
       <div class="midcontent">
         <img class="tx" :src="leftimg" v-show="!showmode">
@@ -45,7 +45,7 @@ export default {
       isleft:true,
       showmode:false,
       theSpeakertime:0,
-      ashujv:[{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},],
+      showit:true,
     };
   },
   components: {
@@ -53,51 +53,107 @@ export default {
   },
   methods: {
     pause_start() {
+      if(this.currentspeaker==0){
+        alert("请选择发言人!")
+      }
       this.ispause = !this.ispause;
     },
+    topre(){
+      if(this.fomat[this.currentformat].statistic&&this.currentspeaker){
+        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].times++;
+        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].time+=this.theSpeakertime-this.currenttime;
+      }
+      if(this.currentformat==0)
+      {
+        alert("已是第一个环节!")
+        return;
+      }
+      this.currentspeaker=0;
+      this.currentformat--;
+      this.ispause = true;
+      this.showit = true;
+      this.leftimg = this.$root.xiaohui[0];
+      this.rightimg = this.$root.xiaohui[0];//默认为校徽
+      this.currentmode = this.fomat[this.currentformat].countmode;
+      this.changespeaker(this.fomat[this.currentformat].person,true); //初始化默认发言人
+      if(this.currentmode ==1){
+          this.currenttime = this.fomat[this.currentformat].time; //初始化计时
+       }
+      else{
+        this.currenttime = this.fomat[this.currentformat].timel;
+        this.cachetime = this.fomat[this.currentformat].timef;
+      }
+      if (this.fomat[this.currentformat].waitperson > 0) {this.leftimg = this.zhengimg[this.fomat[this.currentformat].waitperson - 1]}
+      else if (this.fomat[this.currentformat].waitperson < 0) {this.rightimg = this.fanimg[-this.fomat[this.currentformat].waitperson - 1]}
+      this.theSpeakertime=this.currenttime;
+
+    },
     tonext() {
-      if(this.fomat[this.currentformat].statictis) {  
-        //是否统计
-        this.$root.statictis.push({name:this.fomat[this.currentformat].name,data:this.ashujv});
-        this.resetshujv(); 
+     if(this.fomat[this.currentformat].statistic&&this.currentspeaker){
+        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].times++;
+        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].time+=this.theSpeakertime-this.currenttime;
       }
       if (this.currentformat >= this.fomat.length - 1) {
         if (confirm("已是最后一个环节，是否查看统计结果？")) 
         {
           this.ipc.send('reNomalsize');
-          this.$router.push('/statictis');
+          this.$router.push('/statistic');
         }
         return;
       }
-      this.currentformat++;
-      this.currenttime = this.fomat[this.currentformat].time;
-      this.currentspeaker = this.fomat[this.currentformat].person;
-      this.currentmode = this.fomat[this.currentformat].countmode;
-      this.ispause = true;
-      if (this.currentmode == 2) {
-        this.cachetime = this.fomat[this.currentformat].time;
+      if(this.currentmode==1)
+      {
+        this.$root.fomat[this.currentformat].time = this.currenttime;
       }
+      else{
+          if(this.currentspeaker>0){
+            this.$root.fomat[this.currentformat].timel = this.currenttime;
+            this.$root.fomat[this.currentformat].timef = this.cachetime;
+          }
+          else{
+            this.$root.fomat[this.currentformat].timef = this.currenttime;
+            this.$root.fomat[this.currentformat].timel = this.cachetime;
+          }
+      }
+      this.currentspeaker=0;
+      this.currentformat++;
+      this.ispause = true;
+      this.showit = true;
+      this.leftimg = this.$root.xiaohui[0];
+      this.rightimg = this.$root.xiaohui[1];//默认为校徽
+      this.currentmode = this.fomat[this.currentformat].countmode;
+      this.changespeaker(this.fomat[this.currentformat].person,true); //初始化默认发言人
+      if(this.currentmode ==1){
+          this.currenttime = this.fomat[this.currentformat].time; //初始化计时
+       }
+      else{
+        this.currenttime = this.fomat[this.currentformat].timel;
+        this.cachetime = this.fomat[this.currentformat].timef;
+      }
+      if (this.fomat[this.currentformat].waitperson > 0) {this.leftimg = this.zhengimg[this.fomat[this.currentformat].waitperson - 1]}
+      else if (this.fomat[this.currentformat].waitperson < 0) {this.rightimg = this.fanimg[-this.fomat[this.currentformat].waitperson - 1]}
       this.theSpeakertime=this.currenttime;
 
     },
-    resetshujv(){
-      this.ashujv=[{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},];
-    },
-    changespeaker(index) {
-      if(this.fomat[this.currentformat].statictis) {  
-        this.ashujv[this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].times++;
-        this.ashujv[this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].time+= this.theSpeakertime-this.currenttime;
-        this.theSpeakertime=this.currenttime;
+    changespeaker(index,st) {
+      this.showit = true;
+      if(index==0){
+        this.showit = false;
+        return;
+      }
+      if(this.fomat[this.currentformat].statistic&&!st&&this.currentspeaker){
+        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].times++;
+        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].time+=this.theSpeakertime-this.currenttime;
       }
       if (this.currentmode == 2 && this.currentspeaker * index < 0) {
         var t = this.currenttime;
         this.currenttime = this.cachetime;
         this.cachetime = t;
-        if(this.fomat[this.currentformat].statictis) this.theSpeakertime=this.currenttime;
       }
+      if(this.fomat[this.currentformat].statistic) this.theSpeakertime=this.currenttime;
       this.currentspeaker = index;
       if (index > 0) {this.leftimg = this.zhengimg[index - 1];this.isleft=true;}
-      if (index < 0) {this.rightimg = this.fanimg[-index - 1];this.isleft=false;}
+      else if (index < 0) {this.rightimg = this.fanimg[-index - 1];this.isleft=false;}
     },
     changeShowmode(){
       this.showmode = !this.showmode;
@@ -141,17 +197,27 @@ export default {
         if (confirm("确认退出？")) {this.ipc.send('window-close');}
       }
       if(key == 77) this.changeShowmode();
-      if(key==13) this.tonext();
+      if(key==34) this.tonext();
+      if(key==33) this.topre();
+      console.log(key);
     };
     this.fomat = this.$root.fomat;
-    this.currenttime = this.fomat[this.currentformat].time; //初始化计时到第一阶段
-    this.currentspeaker = this.fomat[this.currentformat].person; //初始化默认发言人
-    this.currentmode = this.fomat[this.currentformat].countmode; //初始化第一阶段模式
     this.zhengimg = this.$root.zhengimg;
     this.fanimg = this.$root.fanimg;
-    this.leftimg = this.zhengimg[0];
-    this.rightimg = this.fanimg[0];
-    this.theSpeakertime=this.fomat[this.currentformat].time;
+    this.leftimg = this.$root.xiaohui[0];
+    this.rightimg = this.$root.xiaohui[1];//默认为校徽
+    this.currentmode = this.fomat[this.currentformat].countmode; //初始化第一阶段模式
+    this.changespeaker(this.fomat[this.currentformat].person,true); //初始化默认发言人
+    if(this.currentmode ==1){
+      this.currenttime = this.fomat[this.currentformat].time; //初始化计时到第一阶段
+    }
+    else{
+      this.currenttime = this.fomat[this.currentformat].timel;
+      this.cachetime = this.fomat[this.currentformat].timef;
+    }
+    if (this.fomat[this.currentformat].waitperson > 0) {this.leftimg = this.zhengimg[this.fomat[this.currentformat].waitperson - 1]}
+    if (this.fomat[this.currentformat].waitperson < 0) {this.rightimg = this.fanimg[-this.fomat[this.currentformat].waitperson - 1]}
+    this.theSpeakertime=this.currenttime;
   }
 };
 </script>

@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       input: "",
-      ipc: require("electron").ipcRenderer,
+      ipc: '',
       menuShow: false,
       menuLeft: 0,
       menuTop: 0,
@@ -39,6 +39,10 @@ export default {
     startdebate() {
       this.$root.topicz = this.topicz;
       this.$root.topicf = this.topicf;
+      //初始化统计队列
+      for(let i = 0;i<this.$root.fomat.length;++i){
+        this.$root.statistic.push([{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},{time:0,times:0},])
+      }
       this.ipc.send("window-max");
       this.$router.push('/showpage')
     },
@@ -72,6 +76,7 @@ export default {
     if(myDate.getTime()>=startDateM){
       this.$router.push('/wrong');
     }
+    this.ipc = require("electron").ipcRenderer;
     }
 };
 </script>

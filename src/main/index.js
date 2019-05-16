@@ -25,7 +25,8 @@ function createWindow() {
         useContentSize: true,
         width: 1000,
         frame: true,
-        resizable: false,
+        fullscreen: false,
+        // resizable: false,
         maximizable: false,
         icon: 'static/icon.ico',
         webPreferences: {
@@ -62,12 +63,10 @@ ipc.on('window-min', function() {
     })
     //登录窗口最大化
 ipc.on('window-max', function() {
-    mainWindow.setSize(electron.screen.getPrimaryDisplay().workAreaSize.width, electron.screen.getPrimaryDisplay().workAreaSize.height + 20); //高度溢出遮盖顶栏
-    mainWindow.setKiosk(true);
+    mainWindow.setSimpleFullScreen(true);
 })
 ipc.on('reNomalsize', function() {
-    mainWindow.setKiosk(false);
-    mainWindow.setBounds({ x: 440, y: 225, width: 1000, height: 583 })
+    mainWindow.setSimpleFullScreen(false);
 
 })
 ipc.on('window-close', function() {

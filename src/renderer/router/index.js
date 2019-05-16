@@ -28,9 +28,9 @@ export default new Router({
             component: require('@/pages/showpage.vue').default
         },
         {
-            path: '/statictis',
-            name: 'statictis',
-            component: require('@/pages/statictis.vue').default
+            path: '/statistic',
+            name: 'statistic',
+            component: require('@/pages/statistic.vue').default
         },
     ]
 })

@@ -57,7 +57,7 @@ export default {
   },
 
   created() {
-      this.ipc=require("electron").ipcRenderer;
+    this.ipc=require("electron").ipcRenderer;
     this.xiaohui = this.$root.xiaohui;
     this.zhengimg = this.$root.zhengimg;
     this.fanimg = this.$root.fanimg;
