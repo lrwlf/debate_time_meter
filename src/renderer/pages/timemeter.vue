@@ -3,7 +3,7 @@
     <center>
       <img src="../assets/lm.png" id="lm" v-show="isleft&&!showmode&&showit">
       <img src="../assets/rm.png" id="rm" v-show="!isleft&&!showmode&&showit">
-
+      <smalltime :currenttime="cachetime" id = 'smalltime' v-show="currentmode==2"></smalltime>
       <div id="tittle" :style="showmode?'margin-top:10%;':'' ">
         <img @click="topre" src="../assets/lfs.png" ><h3>{{fomat[currentformat].name}}</h3><img @click="tonext" src="../assets/rts.png">
       </div>
@@ -12,20 +12,21 @@
         <countdown class="tm" :showmode='showmode' :pause="ispause" v-model="currenttime" ></countdown>
         <img class="tx" :src="rightimg" v-show="!showmode">
       </div>
-      <span class='undbq'>正方</span>
+      <span class='undbq' v-show='!hiddenbtn'>正方</span>
       <div id='aspace'></div>
-      <span class='undbq'>反方</span>
+      <span class='undbq' v-show='!hiddenbtn'>反方</span>
       <br><br><br><br>
       <div>
-      <button class="unbtn" @click="pause_start" ref="pskey">开始/暂停</button>
+      <button class="unbtn" v-show='!hiddenbtn' @click="pause_start" ref="pskey">开始/暂停</button>
       <div id='bspace'></div>
-      <button  class="unbtn" @click="tonext">下一环节</button>
+      <button  class="unbtn" v-show='!hiddenbtn' @click="tonext">下一环节</button>
       </div>
     </center>
   </div>
 </template>
 <script>
 import countdown from "../components/countdown.vue";
+import smalltime from "../components/smalltime.vue";
 import { isIPv4 } from "net";
 export default {
   data() {
@@ -46,10 +47,12 @@ export default {
       showmode:false,
       theSpeakertime:0,
       showit:true,
+      hiddenbtn:false,
     };
   },
   components: {
-    countdown
+    countdown,
+    smalltime,
   },
   methods: {
     pause_start() {
@@ -198,6 +201,7 @@ export default {
         if (confirm("确认退出？")) {this.ipc.send('window-close');}
       }
       if(key == 77) this.changeShowmode();
+      if(key == 78) this.hiddenbtn=!this.hiddenbtn;
       if(key==34) this.tonext();
       if(key==33) this.topre();
       console.log(key);
@@ -290,5 +294,11 @@ export default {
 }
 span{
   font-family: bdzy;
+}
+#smalltime{
+  position: absolute;
+  right: 190px;
+  bottom: 80px;
+
 }
 </style>
