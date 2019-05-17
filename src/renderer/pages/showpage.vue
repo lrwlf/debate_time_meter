@@ -9,6 +9,9 @@
         <span class='undbq'> 反方</span>
         <span class="topic">{{topicf}}</span>
         </div>
+        <audio ref='threet' src="static/threet.mp3"></audio>
+        <audio ref='five' src="static/five.mp3"></audio>
+        <audio ref='end' src="static/end.mp3"></audio>
     </div>
 </template>
 <script>
@@ -28,14 +31,21 @@ export default {
     },
     created(){
         this.xiaohui = this.$root.xiaohui;
-              console.log(this.$root.topicz);
         this.topicz = this.$root.topicz;
         this.topicf = this.$root.topicf;
         document.onkeydown = e => {
             let key = window.event.keyCode;
             if(key==13) this.nextpage();
-            if (key == 27) {if (confirm("确认退出？")) {this.ipc.send('window-close');}
-      }
+            if (key == 27) {
+                if (confirm("确认退出？")) {
+                    this.ipc.send('window-close');
+                }
+            }
+            if(key==88){this.$refs.five.play()}
+            if(key==90){this.$refs.threet.play()}
+            if(key==67){this.$refs.end.play()}
+            console.log(key)
+
         }
       }
 

@@ -32,5 +32,10 @@ export default new Router({
             name: 'statistic',
             component: require('@/pages/statistic.vue').default
         },
+        {
+            path: '/fomatpage',
+            name: 'fomatpage',
+            component: require('@/pages/fomatpage.vue').default
+        },
     ]
 })

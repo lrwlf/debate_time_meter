@@ -15,7 +15,8 @@
       v-bind:style="{left: getMenuLeft+'px',top: getMenuTop+'px'}"
       v-show="menuShow"
     >
-      <li v-on:click="change_picture">修改配置</li>
+      <li v-on:click="toimgpages">修改配置</li>
+      <li v-on:click="tofomat">自定义赛制</li>
     </ul>
   </div>
 </template>
@@ -36,6 +37,9 @@ export default {
     toimgpages() {
       this.$router.push("loadimg");
     },
+    tofomat(){
+      this.$router.push("fomatpage");
+    },
     startdebate() {
       this.$root.topicz = this.topicz;
       this.$root.topicf = this.topicf;
@@ -54,9 +58,6 @@ export default {
     },
     LshowRightMenu(e) {
       this.menuShow = false;
-    },
-    change_picture() {
-      this.$router.push("loadimg");
     }
   },
   computed: {

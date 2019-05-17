@@ -1,5 +1,8 @@
 <template>
   <div>
+        <audio ref='threet' src="static/threet.mp3">213</audio>
+        <audio ref='five' src="static/five.mp3"></audio>
+        <audio ref='end' src="static/end.mp3"></audio>
     <center>
       <img src="../assets/lm.png" id="lm" v-show="isleft&&!showmode&&showit">
       <img src="../assets/rm.png" id="rm" v-show="!isleft&&!showmode&&showit">
@@ -178,6 +181,19 @@ export default {
           "style",
           "background:url('static/bg.svg');background-size:cover;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
         );
+      }
+    }
+  },
+  watch:{
+    currenttime(){
+      if(this.currenttime==31){ //延迟
+        this.$refs.threet.play();
+      }
+      else if(this.currenttime==5){
+        this.$refs.five.play();
+      }
+      else if(this.currenttime==0){
+        this.$refs.end.play();
       }
     }
   },
