@@ -186,7 +186,7 @@ export default {
   },
   watch:{
     currenttime(){
-      if(this.currenttime==31){ //延迟
+      if(this.currenttime==30){ //延迟
         this.$refs.threet.play();
       }
       else if(this.currenttime==5){
