@@ -70,7 +70,7 @@ export default {
   },
   created() {
     this.ipc = require("electron").ipcRenderer;
-    var startDate ='2019-05-20 00:00:00';
+    var startDate ='2019-05-24 00:00:00';
     startDate= startDate.replace(new RegExp("-","gm"),"/");
     var startDateM = (new Date(startDate)).getTime(); //得到毫秒数
     var myDate = new Date();
