@@ -6,7 +6,7 @@
     <center>
       <img src="../assets/lm.png" id="lm" v-show="isleft&&!showmode&&showit">
       <img src="../assets/rm.png" id="rm" v-show="!isleft&&!showmode&&showit">
-      <smalltime :currenttime="cachetime" id = 'smalltime' v-show="currentmode==2"></smalltime>
+      <smalltime :currenttime="cachetime" id = 'smalltime' v-show="true"></smalltime>
       <div id="tittle" :style="showmode?'margin-top:10%;':'' ">
         <img @click="topre" src="../assets/lfs.png" ><h3>{{fomat[currentformat].name}}</h3><img @click="tonext" src="../assets/rts.png">
       </div>
@@ -15,6 +15,7 @@
         <countdown class="tm" :showmode='showmode' :pause="ispause" v-model="currenttime" ></countdown>
         <img class="tx" :src="rightimg" v-show="!showmode">
       </div>
+      <br><br>
       <span class='undbq' v-show='!hiddenbtn'>正方</span>
       <div id='aspace'></div>
       <span class='undbq' v-show='!hiddenbtn'>反方</span>
@@ -243,31 +244,35 @@ export default {
 };
 </script>
 <style scoped>
+.maincontent{
+  width: 100%;
+}
 .tx {
   display: inline-block;
-  width: 240px;
-  height: 240px;
+  width: 12%;
+  height: 12%;
   border-radius: 50%; 
 }
 .tm {
   display: inline-block;
-  margin-left: 6.5%;
-  margin-right: 6.5%;
+  width: 50%;
 }
 #lm{
   position: absolute;
-  left: 7%;
-  top:32%;
+  left: 13%;
+  top:34%;
+  width: 5%;
   }
 #rm{
   position: absolute;
-  right: 7%;
-  top:32%;
+  right: 13%;
+  top:34%;
+  width: 5%;
 }
 #tittle {
   display: inline-block;
   margin-top: 15%;
-  font-size: 35px;
+  font-size: 2em;
   font-family: bdzy;
   width:100%;
   color: #b43e34;
@@ -281,40 +286,41 @@ export default {
 }
 .undbq{
   display: inline-block;
-  font-size: 30px;
+  font-size: 1.5em;
   background: rgba(158, 158, 158, 0.7);
-  padding: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 50px;
+  width: 5%;
+  padding-top:0.8%;
+  padding-bottom: 0.8%; 
+  border-radius: 2em;
 }
 .unbtn{
   display: inline-block;
-  font-size: 30px;
+  font-size: 1.5em;
   border: 0;
   outline: 0;  
   background: rgba(158, 158, 158, 0.7);
-  padding: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 50px;
+  width: 9%;
+  padding-top:0.8%;
+  padding-bottom: 0.8%; 
+  border-radius: 2em;
   font-family: bdzy;
 }
 #aspace{
   display: inline-block;
-  width: 65%;
+  width: 57%;
 }
 #bspace{
   display: inline-block;
-  width: 61%;
+  width: 53%;
 }
 span{
   font-family: bdzy;
 }
 #smalltime{
   position: absolute;
-  right: 190px;
-  bottom: 80px;
+  width: 10%;
+  right: 14%;
+  bottom: 5%;
 
 }
 </style>

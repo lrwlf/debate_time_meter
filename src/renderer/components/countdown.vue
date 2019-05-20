@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div class="num" :style="!showmode?'':'width:300px;height:300px;'">
+    <div class="num" :style="!showmode?'':'width:24%;'">
       <img :src="topath(minute)">
     </div>
-    <div class="num" id = 'split' :style="!showmode?'':'width:250px;height:300px;'" >
+    <div class="num" :style="!showmode?'':'width:24%'" >
       <img src="static/split.png">
     </div>
-    <div class="num" :style="!showmode?'':'width:300px;height:300px;'" >
+    <div class="num" :style="!showmode?'':'width:24%;'" >
       <img :src="topath(ten)">
     </div>
-    <div class="num" :style="!showmode?'':'width:300px;height:300px;'" >
+    <div class="num" :style="!showmode?'':'width:24%;'" >
       <img :src="topath(one)">
     </div>
   </div>
@@ -65,25 +65,17 @@ export default {
 <style scoped>
 .num {
   display: inline-block;
-  width: 250px;
-  height: 250px;
+  width: 20%;
+  height: 20%;
   text-align: center;
 }
 #bnum {
   display: inline-block;
-  width: 320px;
-  height: 320px;
+  width: 30%;
+  height: 30%;
   text-align: center;
 }
 .num img{
-    height: 100%;
-}
-#split{
-    width: 100px;
-}
-#split img{
-    height: 80%;
-    margin-bottom: 20px;
-
+    width: 100%;
 }
 </style>

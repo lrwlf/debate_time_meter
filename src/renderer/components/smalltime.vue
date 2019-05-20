@@ -2,14 +2,11 @@
   <div>
     <div class="num">
       <img :src="topath(minute)">
-    </div>
-    <div class="num" id = 'split' >
+    </div><div class="num" >
       <img src="static/split.png">
-    </div>
-    <div class="num" >
+    </div><div class="num" >
       <img :src="topath(ten)">
-    </div>
-    <div class="num" >
+    </div><div class="num" >
       <img :src="topath(one)">
     </div>
   </div>
@@ -47,25 +44,12 @@ export default {
 <style scoped>
 .num {
   display: inline-block;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-}
-#bnum {
-  display: inline-block;
-  width: 60px;
-  height: 60px;
+  width: 23%;
+  height: 23%;
   text-align: center;
 }
 .num img{
-    height: 100%;
+    width: 100%;
 }
-#split{
-    width: 10px;
-}
-#split img{
-    height: 80%;
-    margin-bottom: 2px;
 
-}
 </style>

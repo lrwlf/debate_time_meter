@@ -58,8 +58,8 @@ export default {
     text-align: center;
 }
 .xhimg{
-  width: 220px;
-  height: 220px;
+  width: 25%;
+  height: 25%;
   border-radius: 50%; 
   display: block;
   margin: 0 auto;
@@ -70,10 +70,10 @@ export default {
   display: inline-block;
   font-size: 30px;
   background: rgba(158, 158, 158, 0.7);
-  padding: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 50px;
+  width: 12%;
+  padding-top:1%;
+  padding-bottom: 1%; 
+  border-radius: 2em;
   margin-top:10%;
 
   }
@@ -81,11 +81,13 @@ export default {
   display: block;
   font-size: 30px;
   background: rgba(158, 158, 158, 0.7);
-  padding: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 50px;
-  width: 40%;
+  padding-top:1%;
+  padding-bottom: 1%; 
+  padding-left: 5%;
+  padding-right: 5%;
+  
+  border-radius: 2em;
+  width: max-content;
   margin: auto;
   margin-top: 5%;
 }
