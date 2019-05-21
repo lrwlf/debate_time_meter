@@ -84,3 +84,12 @@ ipc.on('sigShowRightClickMenu', (event) => {
     const menu = new Menu();
     menu.append(new MenuItem({ label: 'Hello world' }));
 })
+ipc.on('save_file',(event)=>{
+    dialog.showOpenDialog({
+        properties: ['openDirectory']
+    }, function(files) {
+        if (files)
+            event.sender.send('select_path', files);
+    });
+    
+})
