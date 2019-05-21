@@ -6,7 +6,7 @@
     <center>
       <img src="../assets/lm.png" id="lm" :style="'top:'+ihpos+'px;'" v-show="isleft&&!showmode&&showit">
       <img src="../assets/rm.png" id="rm" :style="'top:'+ihpos+'px;'" v-show="!isleft&&!showmode&&showit">
-      <smalltime :currenttime="cachetime" id = 'smalltime' v-show="currentmode==2||1"></smalltime>
+      <smalltime :currenttime="cachetime" id = 'smalltime' v-show="currentmode==2"></smalltime>
       <div id="tittle" ref='tittle' :style="showmode?'margin-top:10%;':'' ">
         <img @click="topre" src="../assets/lfs.png" ><h3>{{fomat[currentformat].name}}</h3><img @click="tonext" src="../assets/rts.png">
       </div>

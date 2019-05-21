@@ -36,8 +36,8 @@ export default {
     timedown() {
       if (this.pause) return;
       if(this.currenttime>0)
-         this.$emit('down',this.currenttime-1)
-      this.timmer=setTimeout(this.timedown, 1000);
+         this.$emit('down',this.currenttime-0.1)
+      this.timmer=setTimeout(this.timedown, 100);
     },
     topath(num) {
       return "static/" + num + ".png";

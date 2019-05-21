@@ -1,7 +1,7 @@
 <template>
     <div id="aside">
         <textarea :value="data" id="data"></textarea>
-        <a href="static/log.txt"  download = "file.txt" ref="download_file">另存为</a>
+        <a href="static/log.txt"  download = "file.csv" ref="download_file">另存为</a>
         
         
     </div>
@@ -19,7 +19,8 @@ export default {
     },
     methods: {
         save_as_txt(){
-            this.fs.writeFileSync("static/log.txt",this.data);
+            this.fs.writeFileSync('static/log.txt', '\ufeff'); // utf-8 with bom
+            this.fs.appendFileSync("static/log.txt",this.data);
         }
     },
     created(){
@@ -35,7 +36,7 @@ export default {
             this.data+= '-------'+this.$root.fomat[i].name+'--------\n';
             for(let j = 0;j<this.$root.statistic[i].length;++j){
                 if(this.$root.statistic[i][j].times){
-                    this.data +=this.ord[j]+'发言'+this.$root.statistic[i][j].times+'次 发言时间'+this.$root.statistic[i][j].time+'秒\n'
+                    this.data +=this.ord[j]+'发言'+this.$root.statistic[i][j].times+'次, 发言时间'+this.$root.statistic[i][j].time+'秒,\n'
                 }
             }
         };
