@@ -1,13 +1,13 @@
 <template>
   <div>
-        <audio ref='threet' src="static/threet.mp3">213</audio>
+        <audio ref='threet' src="static/threet.mp3"></audio>
         <audio ref='five' src="static/five.mp3"></audio>
         <audio ref='end' src="static/end.mp3"></audio>
     <center>
-      <img src="../assets/lm.png" id="lm" v-show="isleft&&!showmode&&showit">
-      <img src="../assets/rm.png" id="rm" v-show="!isleft&&!showmode&&showit">
-      <smalltime :currenttime="cachetime" id = 'smalltime' v-show="true"></smalltime>
-      <div id="tittle" :style="showmode?'margin-top:10%;':'' ">
+      <img src="../assets/lm.png" id="lm" :style="'top:'+ihpos+'px;'" v-show="isleft&&!showmode&&showit">
+      <img src="../assets/rm.png" id="rm" :style="'top:'+ihpos+'px;'" v-show="!isleft&&!showmode&&showit">
+      <smalltime :currenttime="cachetime" id = 'smalltime' v-show="currentmode==2||1"></smalltime>
+      <div id="tittle" ref='tittle' :style="showmode?'margin-top:10%;':'' ">
         <img @click="topre" src="../assets/lfs.png" ><h3>{{fomat[currentformat].name}}</h3><img @click="tonext" src="../assets/rts.png">
       </div>
       <div class="midcontent">
@@ -52,6 +52,7 @@ export default {
       theSpeakertime:0,
       showit:true,
       hiddenbtn:false,
+      ihpos:0,
     };
   },
   components: {
@@ -162,6 +163,10 @@ export default {
       this.currentspeaker = index;
       if (index > 0) {this.leftimg = this.zhengimg[index - 1];this.isleft=true;}
       else if (index < 0) {this.rightimg = this.fanimg[-index - 1];this.isleft=false;}
+      // if(this.currentmode==2&&  this.cachetime==0&&this.currenttime!=0&&this.ispause) //解决双方计时一方时间用尽后另一方也停止的问题
+      // {
+      //   this.ispause=false;
+      // }
     },
     changeShowmode(){
       this.showmode = !this.showmode;
@@ -240,6 +245,9 @@ export default {
     if (this.fomat[this.currentformat].waitperson > 0) {this.leftimg = this.zhengimg[this.fomat[this.currentformat].waitperson - 1]}
     if (this.fomat[this.currentformat].waitperson < 0) {this.rightimg = this.fanimg[-this.fomat[this.currentformat].waitperson - 1]}
     this.theSpeakertime=this.currenttime;
+  },
+  mounted(){
+    this.ihpos = document.body.offsetWidth*0.15+this.$refs.tittle.offsetHeight-document.body.offsetHeight*0.06;
   }
 };
 </script>
@@ -259,14 +267,12 @@ export default {
 }
 #lm{
   position: absolute;
-  left: 13%;
-  top:34%;
+  left: 12%;
   width: 5%;
   }
 #rm{
   position: absolute;
-  right: 13%;
-  top:34%;
+  right: 12%;
   width: 5%;
 }
 #tittle {

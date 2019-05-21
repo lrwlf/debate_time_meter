@@ -34,8 +34,9 @@ export default {
   },
   methods: {
     timedown() {
-      if (this.pause || this.currenttime <= 0) return;
-      this.$emit('down',this.currenttime-1)
+      if (this.pause) return;
+      if(this.currenttime>0)
+         this.$emit('down',this.currenttime-1)
       this.timmer=setTimeout(this.timedown, 1000);
     },
     topath(num) {
