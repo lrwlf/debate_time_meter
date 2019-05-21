@@ -163,6 +163,10 @@ export default {
       this.currentspeaker = index;
       if (index > 0) {this.leftimg = this.zhengimg[index - 1];this.isleft=true;}
       else if (index < 0) {this.rightimg = this.fanimg[-index - 1];this.isleft=false;}
+      // if(this.currentmode==2&&  this.cachetime==0&&this.currenttime!=0&&this.ispause) //解决双方计时一方时间用尽后另一方也停止的问题
+      // {
+      //   this.ispause=false;
+      // }
     },
     changeShowmode(){
       this.showmode = !this.showmode;

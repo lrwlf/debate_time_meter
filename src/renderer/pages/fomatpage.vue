@@ -10,7 +10,7 @@
           <option value="2">双方计时</option>
         </select>
         <span>时间:</span>
-        <input type="number" style="width:50px;" v-model="item.time">
+        <input type="number" style="width:50px;" v-model.number="item.time">
         <span>默认发言人</span>
         <select v-model="item.person">
           <option value="0">无</option>
@@ -37,7 +37,7 @@
         </select>
         <input type="checkbox" v-model="item.statistic"><span>高级统计</span>
       </li>
-      <button @click="add" style="margin-right:500px;margin-left:100px;">添加环节</button><button @click="toback">返回主界面</button>
+      <button @click="add" style="margin-right:500px;margin-left:100px;">添加环节</button><button @click="toback">保存并返回主界面</button>
     </ol>
   </div>
 </template>
