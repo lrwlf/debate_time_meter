@@ -37,7 +37,7 @@
         </select>
         <input type="checkbox" v-model="item.statistic"><span>高级统计</span>
       </li>
-      <button @click="add" style="margin-right:500px;margin-left:100px;">添加环节</button><button @click="toback">保存并返回主界面</button>
+      <button @click="add" style="margin-right:500px;margin-left:100px;">添加环节</button><button @click="toback">保存并返回</button>
     </ol>
   </div>
 </template>

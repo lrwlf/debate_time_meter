@@ -32,6 +32,7 @@
 import countdown from "../components/countdown.vue";
 import smalltime from "../components/smalltime.vue";
 import { isIPv4 } from "net";
+import { setTimeout, clearTimeout } from 'timers';
 export default {
   data() {
     return {
@@ -53,6 +54,7 @@ export default {
       showit:true,
       hiddenbtn:false,
       ihpos:0,
+      panwentimer:'',
     };
   },
   components: {
@@ -67,11 +69,22 @@ export default {
       }
       this.ispause = !this.ispause;
     },
+    doStatistic(){
+        if(this.panwentimer)
+          clearInterval(this.panwentimer);
+        let tempstatic={};
+        let curtime = new Date();
+        tempstatic.bgtime = curtime.getHours()+':'+curtime.getMinutes()+':'+curtime.getSeconds();
+        console.log('tonhji:'+(this.theSpeakertime-this.currenttime));
+        tempstatic.lasttime = this.theSpeakertime-this.currenttime;
+        tempstatic.stage = this.currentformat;
+        tempstatic.speaker = this.currentspeaker;
+        this.$root.statistic.push(tempstatic);
+    },
     topre(){
       if(this.fomat[this.currentformat].statistic&&this.currentspeaker){
-        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].times++;
-        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].time+=this.theSpeakertime-this.currenttime;
-      }
+        this.doStatistic();
+     }
       if(this.currentformat==0)
       {
         alert("已是第一个环节!")
@@ -99,9 +112,8 @@ export default {
     },
     tonext() {
      if(this.fomat[this.currentformat].statistic&&this.currentspeaker){
-        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].times++;
-        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].time+=this.theSpeakertime-this.currenttime;
-      }
+          this.doStatistic();
+        }
       if (this.currentformat >= this.fomat.length - 1) {
         if (confirm("已是最后一个环节，是否查看统计结果？")) 
         {
@@ -151,22 +163,29 @@ export default {
         return;
       }
       if(this.fomat[this.currentformat].statistic&&!st&&this.currentspeaker){
-        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].times++;
-        this.$root.statistic[this.currentformat][this.currentspeaker>0?this.currentspeaker-1:-this.currentspeaker+3].time+=this.theSpeakertime-this.currenttime;
+          this.doStatistic();
       }
       if (this.currentmode == 2 && this.currentspeaker * index < 0) {
         var t = this.currenttime;
         this.currenttime = this.cachetime;
         this.cachetime = t;
       }
-      if(this.fomat[this.currentformat].statistic) this.theSpeakertime=this.currenttime;
       this.currentspeaker = index;
+      if(this.fomat[this.currentformat].statistic){
+        this.theSpeakertime=this.currenttime;
+        if(this.fomat[this.currentformat].name.match('盘问')&&this.currentspeaker*this.fomat[this.currentformat].person<0)
+        {
+          this.ispause = true; 
+          this.panwentimer = setInterval(()=>{this.theSpeakertime+=0.01;console.log(this.theSpeakertime);}, 10);
+        }
+      }
+        
+      if(this.fomat[this.currentformat].name.match('盘问')&&this.currentspeaker*this.fomat[this.currentformat].person>0&&!st){
+        this.ispause = false;
+      }
       if (index > 0) {this.leftimg = this.zhengimg[index - 1];this.isleft=true;}
       else if (index < 0) {this.rightimg = this.fanimg[-index - 1];this.isleft=false;}
-      // if(this.currentmode==2&&  this.cachetime==0&&this.currenttime!=0&&this.ispause) //解决双方计时一方时间用尽后另一方也停止的问题
-      // {
-      //   this.ispause=false;
-      // }
+
     },
     changeShowmode(){
       this.showmode = !this.showmode;

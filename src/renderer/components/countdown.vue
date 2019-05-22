@@ -54,7 +54,7 @@ export default {
   },
   watch:{
       pause:function(){
-            if (!this.pause) this.timmer=setTimeout(this.timedown, 1000);
+            if (!this.pause) this.timmer=setTimeout(this.timedown, 100);
             else clearTimeout(this.timmer);
       },
   },
