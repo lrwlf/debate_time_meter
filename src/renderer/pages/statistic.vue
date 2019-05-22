@@ -30,7 +30,6 @@ export default {
     methods: {
         save_as_txt(){
             this.ipc.send("save_csv_file", this.data);
-
         },
         toSpname(index){
             let ord=['正方一辩','正方二辩','正方三辩','正方四辩','反方一辩','反方二辩','反方三辩','反方四辩'];

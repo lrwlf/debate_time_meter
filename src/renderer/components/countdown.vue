@@ -23,20 +23,24 @@ export default {
   },
   computed: {
     minute: function() {
-      return parseInt(this.currenttime / 60);
+      return parseInt(parseInt(this.currenttime) / 60);
     },
     ten: function() {
-      return parseInt(parseInt(this.currenttime % 60) / 10);
+      return parseInt(parseInt(parseInt(this.currenttime) % 60) / 10);
     },
     one: function() {
-      return parseInt(parseInt(this.currenttime % 60) % 10);
+      return parseInt(parseInt(parseInt(this.currenttime) % 60) % 10);
     }
   },
   methods: {
     timedown() {
       if (this.pause) return;
-      if(this.currenttime>0)
+      if(this.currenttime>=0.9)
          this.$emit('down',this.currenttime-0.1)
+      else{
+         clearTimeout(this.timmer);
+         this.$emit('down',0);
+      }
       this.timmer=setTimeout(this.timedown, 100);
     },
     topath(num) {
