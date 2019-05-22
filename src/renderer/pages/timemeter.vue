@@ -115,9 +115,8 @@ export default {
           this.doStatistic();
         }
       if (this.currentformat >= this.fomat.length - 1) {
-        if (confirm("已是最后一个环节，是否查看统计结果？")) 
+        if (confirm("已是最后一个环节，是否结束？")) 
         {
-          this.ipc.send('reNomalsize');
           this.$router.push('/statistic');
         }
         return;

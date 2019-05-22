@@ -1,8 +1,15 @@
 <template>
     <div id="aside">
-        <textarea :value="data" id="data"></textarea>
-        <a href="static/log.txt"  download = "file.csv" ref="download_file">另存为</a>
-        
+        <div class="xhside">
+        <img class="xhimg" :src="xiaohui[0]" >
+        <span class='undbq'>正方</span>
+        <span class="topic">{{topicz}}</span>
+        </div><div class="xhside">
+        <img class="xhimg" :src="xiaohui[1]" >
+        <span class='undbq'> 反方</span>
+        <span class="topic">{{topicf}}</span>
+        <a href="javascript:void(0)"  @click="save_as_txt">导出统计结果</a>
+        </div>
         
     </div>
 </template>
@@ -15,12 +22,15 @@ export default {
             fs:'',
             ipc:'',
             stat_stagels:[],
+            xiaohui:[],
+            topicz:'',
+            topicf:'',
         }
     },
     methods: {
         save_as_txt(){
-            this.fs.writeFileSync('static/log.txt', '\ufeff'); // utf-8 with bom
-            this.fs.appendFileSync("static/log.txt",this.data);
+            this.ipc.send("save_csv_file", this.data);
+
         },
         toSpname(index){
             let ord=['正方一辩','正方二辩','正方三辩','正方四辩','反方一辩','反方二辩','反方三辩','反方四辩'];
@@ -51,7 +61,7 @@ export default {
     },
     created(){
         
-        this.fs = require("fs")
+        this.fs = require("fs");
         this.ipc = require('electron').ipcRenderer;
         this.ipc.on('select_path',(event,path)=>{
             console.log(path);
@@ -81,29 +91,82 @@ export default {
                 let res = this.countres(speaker);
                 this.data+=this.toSpname(speaker)+','+res.time.toFixed(1)+','+res.times.toFixed(1)+','+(res.time/res.times).toFixed(1)+',\n';
             }
-        this.save_as_txt();
+
+
+
+        this.xiaohui = this.$root.xiaohui;
+        this.topicz = this.$root.topicz;
+        this.topicf = this.$root.topicf;
+        document.onkeydown = e => {
+            let key = window.event.keyCode;
+            if (key == 27||key==13) {
+                if (confirm("确认退出？")) {
+                    this.ipc.send('window-close');
+                }
+            }
+            console.log(key)
+
+        }
     }
 }
 </script>
 <style scoped>
-#data{
-    width:900px;
-    height: 450px;
+
+.xhside{
+    display: inline-block;
+    width: 50%;
+    text-align: center;
 }
-.aside button {
+.xhimg{
+  width: 25%;
+  height: 25%;
+  border-radius: 50%; 
+  display: block;
+  margin: 0 auto;
+  margin-top: 30%;
+
+}
+.undbq{
   display: inline-block;
-  background-color: rgba(184, 184, 184, 0.7);
-  width: 30%;
-  height: 50px;
-  border-radius: 9px;
-  border: none;
-  font-size: 20px;
-  outline: none;
-  color: black;
-  margin-top: 50px;
-  text-align: center;
-  font-family: bdzy;
-  margin-left:10%;
-  margin-right:5%;
+  font-size: 30px;
+  background: rgba(158, 158, 158, 0.7);
+  width: 12%;
+  padding-top:1%;
+  padding-bottom: 1%; 
+  border-radius: 2em;
+  margin-top:10%;
+
+  }
+.topic{
+  display: block;
+  font-size: 30px;
+  background: rgba(158, 158, 158, 0.7);
+  padding-top:1%;
+  padding-bottom: 1%; 
+  padding-left: 5%;
+  padding-right: 5%;
+  
+  border-radius: 2em;
+  width: max-content;
+  margin: auto;
+  margin-top: 5%;
+}
+.xhside a{
+    position: absolute;
+    display: block;
+    outline: 0;
+    border: 0;
+    text-decoration:none;
+    color: black;
+    font-size: 25px;
+    background: rgba(158, 158, 158, 0.7);
+    padding-top:1%;
+    padding-bottom: 1%; 
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 2em;
+    bottom: 5%;
+    right: 5%;
+    
 }
 </style>
