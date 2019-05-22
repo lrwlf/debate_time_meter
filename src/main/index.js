@@ -1,4 +1,5 @@
 import { app, BrowserWindow, dialog, MenuItem, Menu, ipcRenderer } from 'electron'
+const fs = require('fs')
 
 /**
  * Set `__static` path to static files in production
@@ -84,12 +85,17 @@ ipc.on('sigShowRightClickMenu', (event) => {
     const menu = new Menu();
     menu.append(new MenuItem({ label: 'Hello world' }));
 })
-ipc.on('save_file',(event)=>{
-    dialog.showOpenDialog({
-        properties: ['openDirectory']
-    }, function(files) {
-        if (files)
-            event.sender.send('select_path', files);
+ipc.on('save_csv_file', (event, data) => {
+    var filepath = dialog.showSaveDialog({
+        filters: [{
+            name: 'statistic',
+            extensions: ['csv', 'txt']
+        }],
+        defaultPath: 'statistic',
+        title: '导出',
+        buttonLabel: '导出',
     });
-    
+    fs.writeFileSync(filepath, '\ufeff'); // utf-8 with bom
+    fs.appendFileSync(filepath, data);
+
 })

@@ -8,7 +8,7 @@
         <img class="xhimg" :src="xiaohui[1]" >
         <span class='undbq'> 反方</span>
         <span class="topic">{{topicf}}</span>
-        <a href="static/log.txt"  download = "statistic.csv" ref="download_file">导出统计结果</a>
+        <a href="javascript:void(0)"  @click="save_as_txt">导出统计结果</a>
         </div>
         
     </div>
@@ -29,8 +29,8 @@ export default {
     },
     methods: {
         save_as_txt(){
-            this.fs.writeFileSync('static/log.txt', '\ufeff'); // utf-8 with bom
-            this.fs.appendFileSync("static/log.txt",this.data);
+            this.ipc.send("save_csv_file", this.data);
+
         },
         toSpname(index){
             let ord=['正方一辩','正方二辩','正方三辩','正方四辩','反方一辩','反方二辩','反方三辩','反方四辩'];
@@ -61,7 +61,7 @@ export default {
     },
     created(){
         
-        this.fs = require("fs")
+        this.fs = require("fs");
         this.ipc = require('electron').ipcRenderer;
         this.ipc.on('select_path',(event,path)=>{
             console.log(path);
@@ -91,7 +91,6 @@ export default {
                 let res = this.countres(speaker);
                 this.data+=this.toSpname(speaker)+','+res.time.toFixed(1)+','+res.times.toFixed(1)+','+(res.time/res.times).toFixed(1)+',\n';
             }
-        this.save_as_txt();
 
 
 
