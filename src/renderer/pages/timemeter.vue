@@ -210,13 +210,13 @@ export default {
   },
   watch:{
     currenttime(){
-      if(this.currenttime==30){ //延迟
+      if(Math.abs(this.currenttime-30)<0.00001){ //延迟
         this.$refs.threet.play();
       }
-      else if(this.currenttime==5){
+      else if(Math.abs(this.currenttime-5)<0.00001){
         this.$refs.five.play();
       }
-      else if(this.currenttime==0){
+      else if(Math.abs(this.currenttime)<0.00001){
         this.$refs.end.play();
       }
     }
