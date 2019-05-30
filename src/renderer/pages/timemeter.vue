@@ -195,7 +195,7 @@ export default {
         .querySelector("body")
         .setAttribute(
           "style",
-          "background:url(static/bg1.svg);background-size:cover;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
+          "background:url(static/bg1.svg);background-size:100%;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
         );
       }
       else{
@@ -203,7 +203,7 @@ export default {
         .querySelector("body")
         .setAttribute(
           "style",
-          "background:url('static/bg.svg');background-size:cover;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
+          "background:url('static/bg.svg');background-size:100%;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
         );
       }
     }

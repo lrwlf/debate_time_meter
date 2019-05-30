@@ -22,7 +22,7 @@
   }
   body{
     background: url('../../static/bg.svg');
-    background-size:cover;
+    background-size:100%;
     background-repeat: no-repeat;
     font-family:bdzy;
   }

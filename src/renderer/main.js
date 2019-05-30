@@ -41,7 +41,7 @@ new Vue({
             topicz: '',
             topicf: '',
             fomat: [{
-                    name: '正方开篇立论',
+                    name: '正方立论',
                     countmode: 1,
                     time: 210,
                     person: 1,
@@ -49,7 +49,7 @@ new Vue({
                     statistic: false,
                 },
                 {
-                    name: '反方二辩质询',
+                    name: '反方质询',
                     countmode: 1,
                     time: 120,
                     person: -2,
@@ -57,7 +57,7 @@ new Vue({
                     statistic: true,
                 },
                 {
-                    name: '反方开篇立论',
+                    name: '反方立论',
                     countmode: 1,
                     time: 210,
                     person: -1,
@@ -65,7 +65,7 @@ new Vue({
                     statistic: false,
                 },
                 {
-                    name: '正方二辩质询',
+                    name: '正方质询',
                     countmode: 1,
                     time: 120,
                     person: 2,
@@ -73,7 +73,7 @@ new Vue({
                     statistic: true,
                 },
                 {
-                    name: '反方质询小结',
+                    name: '质询小结',
                     countmode: 1,
                     time: 90,
                     person: -2,
@@ -81,7 +81,7 @@ new Vue({
                     statistic: false,
                 },
                 {
-                    name: '正方质询小结',
+                    name: '质询小结',
                     countmode: 1,
                     time: 90,
                     person: 2,
@@ -89,7 +89,7 @@ new Vue({
                     statistic: false,
                 },
                 {
-                    name: '正反四辩对辩论',
+                    name: '对辩',
                     countmode: 2,
                     timel: 90,
                     timef: 90,
@@ -98,7 +98,7 @@ new Vue({
                     statistic: true,
                 },
                 {
-                    name: '正方三辩盘问',
+                    name: '正方盘问',
                     countmode: 1,
                     time: 90,
                     person: 3,
@@ -106,7 +106,7 @@ new Vue({
                     statistic: true,
                 },
                 {
-                    name: '反方三辩盘问',
+                    name: '反方盘问',
                     countmode: 1,
                     time: 90,
                     person: -3,
@@ -114,7 +114,7 @@ new Vue({
                     statistic: true,
                 },
                 {
-                    name: '正方盘问小结',
+                    name: '盘问小结',
                     countmode: 1,
                     time: 90,
                     person: 3,
@@ -122,7 +122,7 @@ new Vue({
                     statistic: false,
                 },
                 {
-                    name: '反方盘问小结',
+                    name: '盘问小结',
                     countmode: 1,
                     time: 90,
                     person: -3,
