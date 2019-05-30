@@ -1,8 +1,8 @@
 <template>
   <div>
-        <audio ref='threet' src="static/threet.mp3"></audio>
-        <audio ref='five' src="static/five.mp3"></audio>
-        <audio ref='end' src="static/end.mp3"></audio>
+        <audio ref='threet' preload='auto' src="static/threet.mp3"></audio>
+        <audio ref='five' preload='auto' src="static/five.mp3"></audio>
+        <audio ref='end' preload='auto' src="static/end.mp3"></audio>
     <center>
       <img src="../assets/lm.png" id="lm" :style="'top:'+ihpos+'px;'" v-show="isleft&&!showmode&&showit">
       <img src="../assets/rm.png" id="rm" :style="'top:'+ihpos+'px;'" v-show="!isleft&&!showmode&&showit">
