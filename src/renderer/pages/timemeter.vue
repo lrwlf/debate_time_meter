@@ -115,11 +115,7 @@ export default {
           this.doStatistic();
         }
       if (this.currentformat >= this.fomat.length - 1) {
-        if (confirm("已是最后一个环节，是否结束？")) 
-        {
           this.$router.push('/statistic');
-        }
-        return;
       }
       if(this.currentmode==1)
       {
