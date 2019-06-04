@@ -1,5 +1,8 @@
 <template>
   <div>
+     <audio ref='threet' preload='auto' src="static/threet.mp3"></audio>
+        <audio ref='five' preload='auto' src="static/five.mp3"></audio>
+        <audio ref='end' preload='auto' src="static/end.mp3"></audio>
     <div class="num" :style="!showmode?'':'width:24%;'">
       <img :src="topath(minute)">
     </div>
@@ -36,10 +39,21 @@ export default {
   },
   methods: {
     timedown() {
-      if (this.pause) return;
-      if(this.currenttime>=0.1)
+      if (this.pause||this.currenttime==0) return;
+      if(this.currenttime>=0.1){
          this.$emit('down',this.currenttime-0.1)
+         if(Math.abs(this.currenttime-30)<0.01){
+            this.$refs.threet.play();
+        }
+        else{
+          for(let i = 5 ; i > 0; --i)
+            if(Math.abs(this.currenttime-i) < 0.01 ){
+              this.$refs.five.play();
+          }
+        }
+      }
       else{
+         this.$refs.end.play();
          clearTimeout(this.timmer);
          this.$emit('down',0);
       }

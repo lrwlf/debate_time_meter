@@ -1,8 +1,5 @@
 <template>
   <div>
-        <audio ref='threet' preload='auto' src="static/threet.mp3"></audio>
-        <audio ref='five' preload='auto' src="static/five.mp3"></audio>
-        <audio ref='end' preload='auto' src="static/end.mp3"></audio>
     <center>
       <img src="../assets/lm.png" id="lm" :style="'top:'+ihpos+'px;'" v-show="isleft&&!showmode&&showit">
       <img src="../assets/rm.png" id="rm" :style="'top:'+ihpos+'px;'" v-show="!isleft&&!showmode&&showit">
@@ -205,20 +202,7 @@ export default {
     }
   },
   watch:{
-    currenttime(){
-      if(Math.abs(this.currenttime-30)<0.1){ //延迟
-        this.$refs.threet.play();
-      }
-      else if(Math.abs(this.currenttime)<0.1){
-        this.$refs.end.play();
-      }
-      else
-        for(let i = 5 ; i > 0; --i)
-          if(Math.abs(this.currenttime-i) < 0.1 ){
-            this.$refs.five.play();
-          }
-      
-    }
+
   },
   created() {
     this.ipc=require("electron").ipcRenderer;
