@@ -44,6 +44,7 @@ export default {
          this.$emit('down',0);
       }
       this.timmer=setTimeout(this.timedown, 200 - (+new Date()-this.now));
+      // console.log((+new Date()-this.now));
       this.now = +new Date();
     },
     // bgdown(){
