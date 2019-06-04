@@ -209,12 +209,15 @@ export default {
       if(Math.abs(this.currenttime-30)<0.1){ //延迟
         this.$refs.threet.play();
       }
-      else if(Math.abs(this.currenttime-5)<0.1){
-        this.$refs.five.play();
-      }
       else if(Math.abs(this.currenttime)<0.1){
         this.$refs.end.play();
       }
+      else
+        for(var i = 5 ; i > 0; --i)
+          if(Math.abs(this.currenttime-i) < 0.1 ){
+            this.$refs.five.play();
+          }
+      
     }
   },
   created() {
