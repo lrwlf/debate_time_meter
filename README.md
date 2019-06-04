@@ -32,7 +32,7 @@ npm run build:win32
 # 计时页面
 + 开始/暂停计时 p
 + 上/下一环节 pageup/pagedown
-+ 切换发言人 1 2 3 4 f1 f2 f3 f4
++ 切换发言人 1 2 3 4 q w e r
 + 是否显示功能键 n
 + 放大计时模式 m
 + 退出 esc
