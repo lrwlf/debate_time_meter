@@ -9,9 +9,9 @@
         <span class='undbq'> 反方</span>
         <span class="topic">{{topicf}}</span>
         </div>
-        <audio ref='threet' src="static/threet.mp3"></audio>
-        <audio ref='five' src="static/five.mp3"></audio>
-        <audio ref='end' src="static/end.mp3"></audio>
+        <audio  preload='auto' ref='threet' src="static/threet.mp3"></audio>
+        <audio preload='auto' ref='five' src="static/five.mp3"></audio>
+        <audio preload='auto' ref='end' src="static/end.mp3"></audio>
     </div>
 </template>
 <script>

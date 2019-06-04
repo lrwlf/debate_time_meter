@@ -79,7 +79,7 @@ export default {
             "style",
             "background:url(" +
               path[0][0].replace(/\\/g, "/") +
-              ");background-size:cover;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
+              ");background-size:100%;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
           );
       }
     });

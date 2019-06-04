@@ -1,8 +1,8 @@
 <template>
   <div>
-        <audio ref='threet' src="static/threet.mp3"></audio>
-        <audio ref='five' src="static/five.mp3"></audio>
-        <audio ref='end' src="static/end.mp3"></audio>
+        <audio ref='threet' preload='auto' src="static/threet.mp3"></audio>
+        <audio ref='five' preload='auto' src="static/five.mp3"></audio>
+        <audio ref='end' preload='auto' src="static/end.mp3"></audio>
     <center>
       <img src="../assets/lm.png" id="lm" :style="'top:'+ihpos+'px;'" v-show="isleft&&!showmode&&showit">
       <img src="../assets/rm.png" id="rm" :style="'top:'+ihpos+'px;'" v-show="!isleft&&!showmode&&showit">
@@ -115,11 +115,7 @@ export default {
           this.doStatistic();
         }
       if (this.currentformat >= this.fomat.length - 1) {
-        if (confirm("已是最后一个环节，是否结束？")) 
-        {
           this.$router.push('/statistic');
-        }
-        return;
       }
       if(this.currentmode==1)
       {
@@ -195,7 +191,7 @@ export default {
         .querySelector("body")
         .setAttribute(
           "style",
-          "background:url(static/bg1.svg);background-size:cover;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
+          "background:url(static/bg1.svg);background-size:100%;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
         );
       }
       else{
@@ -203,20 +199,20 @@ export default {
         .querySelector("body")
         .setAttribute(
           "style",
-          "background:url('static/bg.svg');background-size:cover;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
+          "background:url('static/bg.svg');background-size:100%;background-repeat:no-repeat;font-family: Source Han Sans,Microsoft YaHei"
         );
       }
     }
   },
   watch:{
     currenttime(){
-      if(Math.abs(this.currenttime-30)<0.00001){ //延迟
+      if(Math.abs(this.currenttime-30)<0.1){ //延迟
         this.$refs.threet.play();
       }
-      else if(Math.abs(this.currenttime-5)<0.00001){
+      else if(Math.abs(this.currenttime-5)<0.1){
         this.$refs.five.play();
       }
-      else if(Math.abs(this.currenttime)<0.00001){
+      else if(Math.abs(this.currenttime)<0.1){
         this.$refs.end.play();
       }
     }
