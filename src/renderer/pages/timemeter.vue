@@ -213,7 +213,7 @@ export default {
         this.$refs.end.play();
       }
       else
-        for(var i = 5 ; i > 0; --i)
+        for(let i = 5 ; i > 0; --i)
           if(Math.abs(this.currenttime-i) < 0.1 ){
             this.$refs.five.play();
           }

@@ -15,34 +15,50 @@
   </div>
 </template>
 <script>
+import { setInterval, clearInterval } from 'timers';
 export default {
   data() {
     return {
         timmer:'',
+        now:null,
     };
   },
   computed: {
     minute: function() {
-      return parseInt(parseInt(this.currenttime) / 60);
+      return Math.floor(Math.floor(this.currenttime) / 60);
     },
     ten: function() {
-      return parseInt(parseInt(parseInt(this.currenttime) % 60) / 10);
+      return Math.floor(Math.floor(Math.floor(this.currenttime) % 60) / 10);
     },
     one: function() {
-      return parseInt(parseInt(parseInt(this.currenttime) % 60) % 10);
+      return Math.floor(Math.floor(Math.floor(this.currenttime) % 60) % 10);
     }
   },
   methods: {
     timedown() {
       if (this.pause) return;
-      if(this.currenttime>=0.9)
+      if(this.currenttime>=0.1)
          this.$emit('down',this.currenttime-0.1)
       else{
          clearTimeout(this.timmer);
          this.$emit('down',0);
       }
-      this.timmer=setTimeout(this.timedown, 100);
+      this.timmer=setTimeout(this.timedown, 200 - (+new Date()-this.now));
+      this.now = +new Date();
     },
+    // bgdown(){
+    //   console.log('-1');
+    //     this.timmer = setInterval(()=>{
+    //       if(this.currenttime>=0.1){
+    //         this.$emit('down',this.currenttime-0.1);
+    //         console.log(this.currenttime);
+    //       }
+    //       else{
+    //         clearInterval(this.timmer);
+    //       }
+    //     },100)
+         
+    // },
     topath(num) {
       return "static/" + num + ".png";
     }
@@ -58,8 +74,18 @@ export default {
   },
   watch:{
       pause:function(){
-            if (!this.pause) this.timmer=setTimeout(this.timedown, 100);
+            if (!this.pause) {
+              this.now = +new Date();
+              this.timmer=setTimeout(this.timedown, 100);
+            
+            }
             else clearTimeout(this.timmer);
+            // if (!this.pause){
+            //   this.bgdown();
+            // }
+            // else{
+            //   clearInterval(this.timmer);
+            // }
       },
   },
   created() {
