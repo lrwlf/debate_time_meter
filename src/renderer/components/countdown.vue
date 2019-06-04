@@ -44,7 +44,7 @@ export default {
          this.$emit('down',this.currenttime-0.1)
          if(Math.abs(this.currenttime-30)<0.01){
             this.$refs.threet.play();
-        }
+          }
         else{
           for(let i = 5 ; i > 0; --i)
             if(Math.abs(this.currenttime-i) < 0.01 ){
