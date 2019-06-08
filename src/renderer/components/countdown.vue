@@ -39,8 +39,8 @@ export default {
   },
   methods: {
     timedown() {
-      if (this.pause||this.currenttime==0) return;
-      if(this.currenttime>=0.1){
+      if (this.pause) return;
+      if(this.currenttime>=0.10000000000000001){
          this.$emit('down',this.currenttime-0.1)
          if(Math.abs(this.currenttime-30)<0.01){
             this.$refs.threet.play();
@@ -53,7 +53,8 @@ export default {
         }
       }
       else{
-         this.$refs.end.play();
+        if(this.currenttime>0)
+          this.$refs.end.play();
          clearTimeout(this.timmer);
          this.$emit('down',0);
       }
