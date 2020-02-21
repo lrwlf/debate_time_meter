@@ -73,6 +73,15 @@ ipc.on('reNomalsize', function() {
 ipc.on('window-close', function() {
     mainWindow.close();
 })
+
+ipc.on('change-win-size', function() {
+    if (mainWindow.isFullScreen()) {
+        mainWindow.setSimpleFullScreen(false);
+    } else {
+        mainWindow.setSimpleFullScreen(true);
+
+    }
+})
 ipc.on('open-directory-dialog', function(event, index) {
     dialog.showOpenDialog({
         properties: ['openFile']

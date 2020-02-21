@@ -1,5 +1,5 @@
 <template>
-    <div id="aside">
+    <div id="aside" @dblclick='changeSize'>
         <div class="xhside">
         <img class="xhimg" :src="xiaohui[0]" >
         <span class='undbq'>正方</span>
@@ -30,6 +30,10 @@ export default {
     methods: {
         save_as_txt(){
             this.ipc.send("save_csv_file", this.data);
+        },
+        changeSize(){
+            console.log('change-win-size')
+            this.ipc.send('change-win-size')
         },
         toSpname(index){
             let ord=['正方一辩','正方二辩','正方三辩','正方四辩','反方一辩','反方二辩','反方三辩','反方四辩'];
@@ -127,28 +131,27 @@ export default {
 }
 .undbq{
   display: inline-block;
-  font-size: 30px;
+  font-size: 2.2vw;
   background: rgba(158, 158, 158, 0.7);
-  width: 12%;
-  padding-top:1%;
-  padding-bottom: 1%; 
-  border-radius: 2em;
-  margin-top:10%;
-
-  }
+  width: 10vw;
+  margin: 10vh 19vw 0 19vw;
+  padding-top:0.8vh;
+  padding-bottom: 0.8vh; 
+  border-radius: 2vw;
+  font-family: bdzy;
+}
 .topic{
   display: block;
-  font-size: 30px;
+  font-size: 2.2vw;
   background: rgba(158, 158, 158, 0.7);
   padding-top:1%;
   padding-bottom: 1%; 
   padding-left: 5%;
   padding-right: 5%;
-  
   border-radius: 2em;
   width: max-content;
   margin: auto;
-  margin-top: 5%;
+  margin-top: 5vh;
 }
 .xhside a{
     position: absolute;
@@ -157,15 +160,15 @@ export default {
     border: 0;
     text-decoration:none;
     color: black;
-    font-size: 25px;
+    font-size: 1.5vw;
     background: rgba(158, 158, 158, 0.7);
-    padding-top:1%;
-    padding-bottom: 1%; 
-    padding-left: 2%;
-    padding-right: 2%;
-    border-radius: 2em;
-    bottom: 5%;
-    right: 5%;
+    padding-top:0.8vw;
+    padding-bottom: 0.8vw; 
+    padding-left: 2vw;
+    padding-right: 2vw;
+    border-radius: 2vw;
+    bottom: -18vh;
+    right: 5vw;
     
 }
 </style>

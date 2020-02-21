@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @dblclick='changeSize'>
         <div class="xhside">
         <img class="xhimg" :src="xiaohui[0]" >
         <span class='undbq'>正方</span>
@@ -27,6 +27,10 @@ export default {
     methods:{
         nextpage(){
             this.$router.push('/timemeter');
+        },
+        changeSize(){
+            console.log('change-win-size')
+            this.ipc.send('change-win-size')
         }
     },
     created(){
@@ -68,9 +72,9 @@ export default {
 }
 .undbq{
   display: inline-block;
-  font-size: 30px;
+  font-size: 2vw;
   background: rgba(158, 158, 158, 0.7);
-  width: 12%;
+  width: 10vw;
   padding-top:1%;
   padding-bottom: 1%; 
   border-radius: 2em;
@@ -79,7 +83,7 @@ export default {
   }
 .topic{
   display: block;
-  font-size: 30px;
+  font-size: 2vw;
   background: rgba(158, 158, 158, 0.7);
   padding-top:1%;
   padding-bottom: 1%; 

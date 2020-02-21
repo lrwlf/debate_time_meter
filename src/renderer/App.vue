@@ -25,5 +25,6 @@
     background-size:100%;
     background-repeat: no-repeat;
     font-family:bdzy;
+    position: relative;
   }
 </style>

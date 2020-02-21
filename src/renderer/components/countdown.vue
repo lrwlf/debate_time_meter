@@ -3,16 +3,16 @@
      <audio ref='threet' preload='auto' src="static/threet.mp3"></audio>
         <audio ref='five' preload='auto' src="static/five.mp3"></audio>
         <audio ref='end' preload='auto' src="static/end.mp3"></audio>
-    <div class="num" :style="!showmode?'':'width:24%;'">
+    <div class="num" :style="!showmode?'':'width:12vw;'">
       <img :src="topath(minute)">
     </div>
-    <div class="num" :style="!showmode?'':'width:24%'" >
+    <div class="num" :style="!showmode?'':'width:12vw'" >
       <img src="static/split.png">
     </div>
-    <div class="num" :style="!showmode?'':'width:24%;'" >
+    <div class="num" :style="!showmode?'':'width:12vw;'" >
       <img :src="topath(ten)">
     </div>
-    <div class="num" :style="!showmode?'':'width:24%;'" >
+    <div class="num" :style="!showmode?'':'width:12vw;'" >
       <img :src="topath(one)">
     </div>
   </div>
