@@ -43,7 +43,7 @@ npm run build:win32
 + 退出 esc
 ![image](https://github.com/lrwlf/debate_time_meter/raw/master/showimg/mode1.png)
 ![image](https://github.com/lrwlf/debate_time_meter/raw/master/showimg/mode2.png)
-![image](https://github.com/lrwlf/debate_time_meter/raw/master/showimg/mode3.png)
+![image](https://github.com/lrwlf/debate_time_meter/raw/master/showimg/battle.png)
 
 ---
 
