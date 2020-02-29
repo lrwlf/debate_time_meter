@@ -18,20 +18,22 @@ npm run build:win32
 ```
 
 ### instruction
-```
-# 配置校徽，辩手图片
-![Image](./showimg/config.png)
+
+#### 配置校徽，辩手图片
 首页右键修改配置
+![image](https://github.com/lrwlf/debate_time_meter/raw/master/showimg/config.png)
 
-# 自定义赛制
+#### 自定义赛制
 首页右键自定义赛制
+![image](https://github.com/lrwlf/debate_time_meter/raw/master/showimg/format.png)
 
-# 展示页面功能
+#### 展示页面功能
 + 双击切换全屏/窗口
 + 快捷键z x c测试提示音
 + 回车进入下一个页面
+![image](https://github.com/lrwlf/debate_time_meter/raw/master/showimg/showpage.png)
 
-# 计时页面
+#### 计时页面
 + 双击切换全屏/窗口
 + 开始/暂停计时 p
 + 上/下一环节 Pageup/Pagedown
@@ -39,8 +41,10 @@ npm run build:win32
 + 是否显示功能键 n
 + 放大计时模式 m
 + 退出 esc
+![image](https://github.com/lrwlf/debate_time_meter/raw/master/showimg/mode1.png)
+![image](https://github.com/lrwlf/debate_time_meter/raw/master/showimg/mode2.png)
+![image](https://github.com/lrwlf/debate_time_meter/raw/master/showimg/mode3.png)
 
-```
 ---
 
 This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[8fae476](https://github.com/SimulatedGREG/electron-vue/tree/8fae4763e9d225d3691b627e83b9e09b56f6c935) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
