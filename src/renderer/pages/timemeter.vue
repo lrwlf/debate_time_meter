@@ -250,7 +250,7 @@ export default {
       if (key == 81) this.changespeaker(-1);
       if (key == 87) this.changespeaker(-2);
       if (key == 69) this.changespeaker(-3);
-      if (key == 18) this.changespeaker(-4);
+      if (key == 82) this.changespeaker(-4);
       if (key == 49) this.changespeaker(1);
       if (key == 50) this.changespeaker(2);
       if (key == 51) this.changespeaker(3);

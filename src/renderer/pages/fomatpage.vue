@@ -124,18 +124,27 @@ export default {
       getFile.click();
     },
     readPath(e) {
-        console.log(e.currentTarget.files[0].path); //文件名
-        let xhr = new XMLHttpRequest(),
-        okStatus = document.location.protocol === "file:" ? 0 : 200;
-        xhr.open("GET", e.currentTarget.files[0].path, false);
-        xhr.overrideMimeType("text/html;charset=utf-8"); //默认为utf-8
-        xhr.send(null);
-        if(xhr.status === okStatus){
-            this.fomat=JSON.parse(xhr.responseText)
+      console.log(e.currentTarget.files[0].path); //文件名
+      // var filename = e.currentTarget.files[0].path
+      var selectedFile = e.currentTarget.files[0];
+      var reader = new FileReader(); //这是核心,读取操作就是由它完成.
+      try {
+        reader.readAsText(selectedFile); //读取文件的内容,也可以读取文件的URL
+      } 
+      catch(e){
+        alert("读取文件出错");
+      }
+        
+
+      var this_ = this;
+      reader.onload = function() {
+        //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+        try {
+          this_.fomat = JSON.parse(this.result);
+        } catch(e){
+          alert("读取文件出错");
         }
-        else{
-          alert('导入失败！')
-        }      
+      };
     }
   }
 };
