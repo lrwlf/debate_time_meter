@@ -20,6 +20,7 @@ npm run build:win32
 ### instruction
 ```
 # 配置校徽，辩手图片
+![Image](./showimg/config.png)
 首页右键修改配置
 
 # 自定义赛制
