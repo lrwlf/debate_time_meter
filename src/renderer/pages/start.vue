@@ -109,7 +109,7 @@ export default {
   width: 120px;
   height: 120px;
   display: block;
-  background-color: rgba(184, 184, 184, 0.7);
+  background-color: #ffffff;
   border-radius: 50%;
   border: none;
   outline: none;

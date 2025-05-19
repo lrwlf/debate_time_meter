@@ -159,6 +159,6 @@ button {
   border-radius: 10px;
   width: 100px;
   height: 25px;
-  background: rgba(184, 184, 184, 0.7);
+  background: #ffffff;
 }
 </style>

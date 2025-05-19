@@ -364,7 +364,7 @@ export default {
   font-size: 2vw;
   border: 0;
   outline: 0;
-  background: rgba(158, 158, 158, 0.7);
+  background: #ffffff;
   width: 15vw;
   padding-top: 0.8vw;
   margin: 0 16.5vw;
