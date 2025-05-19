@@ -110,7 +110,7 @@ img {
 }
 .aside button {
   display: inline-block;
-  background-color: rgba(184, 184, 184, 0.7);
+  background-color: #ffffff;
   width: 30%;
   height: 50px;
   border-radius: 9px;
